@@ -1,0 +1,19 @@
+@import '../../global.css';
+
+.tabs-buttons {
+    border-bottom: 2px solid var(--color-white-second);
+    margin-bottom: 32px;
+}
+
+.tab-button {
+    background-color: transparent;
+    border: none;
+    padding: 0px 10px 18px 10px;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid var(--color-purple-basic);
+    margin-bottom: -2px;
+    color: var(--color-purple-basic);
+    font-weight: 600;
+}
