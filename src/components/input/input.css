@@ -1,0 +1,17 @@
+@import "../../global.css";
+
+.input--container {
+  border-radius: var(--button-radius);
+  border: 1px solid var(--color-black-basic);
+  background: transparent;
+  height: 35px;
+  width: 280px;
+  padding-left: 10px;
+  color: var(--color-black-basic);
+
+  box-shadow: var(--shadow-buttons);
+}
+
+.input--container:focus {
+  outline: none;
+}
