@@ -1,0 +1,27 @@
+:root {
+    /* for buttons or inputs backgrounds  */
+    --color-purple-basic: #7F56D9;
+    --color-purple-second: #523595;
+    --color-white-basic: #FFFFFF;
+    --color-white-second: #F9FAFB;
+
+    /* For borders of buttons, divs, etc...*/
+    --color-gray-basic: #D0D5DD;
+
+    /* For titles and labesl */
+    --color-black-basic: #344054; 
+    --color-black-second: #475467;
+
+    /* for inputs placeholders */
+    --placeholder-principal: #667085;
+
+    /* Shadows */
+    --shadow-buttons: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+
+    /* radius */
+        /* buttons */
+    --button-radius: 6px;
+
+        /* bloques divs */
+    --button-radius: 8px;
+}
