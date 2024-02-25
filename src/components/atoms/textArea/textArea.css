@@ -1,4 +1,4 @@
-@import '../../global.css';
+@import '../../../global.css';
 
 .textArea {
     padding: 14px;
@@ -8,10 +8,12 @@
     box-shadow: var(--shadow-buttons);
     border: 1px solid var(--color-gray-basic);
     resize: none;
+    outline: none;
 }
 
 .textArea:focus {
-    border: 1px solid var(--color-black-basic);
+    border: 1px solid var(--color-text-disabled);
+    box-shadow: var(--shadow-buttons);
 }
 
 .textArea::placeholder {

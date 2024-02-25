@@ -1,11 +1,11 @@
 import React from "react";
-import "../input/input.css";
+import "./input.css";
 
 const Input = ({ className, type, placeholder, icon: Icon }) => {
   return (
-    <div>
-      <input className={className} type={type} placeholder={placeholder} />
+    <div className={className}>
       {Icon && <Icon />}
+      <input className="textInput" type={type} placeholder={placeholder} />
     </div>
   );
 };
