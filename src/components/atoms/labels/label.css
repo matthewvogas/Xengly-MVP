@@ -1,0 +1,26 @@
+@import "../../../global.css";
+
+.Title {
+    font-size: 30px;
+    color: var(--color-black-basic);
+}
+
+.TitleText {
+    font-size: 17px;
+    color: var(--color-black-second);
+}
+
+.SubTitle {
+    font-size: 28px;
+    color: var(--color-black-basic);
+}
+
+.SubTitleText {
+    font-size: 16px;
+    color: var(--color-black-second);
+}
+
+.badgeLabel {
+    font-size: 14px;
+    color: var(--color-purple-second);
+}

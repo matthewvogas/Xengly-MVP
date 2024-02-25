@@ -2,12 +2,13 @@
   /* for buttons or inputs backgrounds  */
   --color-purple-basic: #7f56d9;
   --color-purple-second: #523595;
+  --color-purple-third: #F9F5FF;
   --color-white-basic: #ffffff;
-  --color-white-second: #f9fafb;
-  --color-white-disabled: #d8d8d8;
+  --color-white-second: #f9fafb; 
+  --color-white-disabled: #e6e6e6;
 
   /* for disabled buttons, divs texts */
-  --color-text-disabled: #7b7b7b;
+  --color-text-disabled: #a0a0a0;
 
   /* For borders of buttons, divs, etc...*/
   --color-gray-basic: #d0d5dd;

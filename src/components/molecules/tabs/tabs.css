@@ -1,4 +1,4 @@
-@import '../../global.css';
+@import '../../../global.css';
 
 .tabs-buttons {
     border-bottom: 2px solid var(--color-white-second);
