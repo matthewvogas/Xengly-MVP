@@ -1,0 +1,38 @@
+@import "../../../global.css";
+
+.button--normal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+  border-radius: var(--button-radius);
+  border: none;
+  background-color: transparent;
+  padding: 8px 32px 8px 12px;
+  width: auto;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-black-basic);
+}
+
+.button--active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+  border-radius: var(--button-radius);
+  border: none;
+  background-color: var(--color-white-second);
+  padding: 8px 32px 8px 12px;
+  width: auto;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-black-basic);
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+}

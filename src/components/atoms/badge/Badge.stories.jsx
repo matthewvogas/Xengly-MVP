@@ -4,8 +4,9 @@ import "./badge.css";
 import { ReactComponent as ex } from "../../../assets/icons/X.svg";
 
 export default {
-  title: "Badge",
+  title: "Design System/Atoms/Badge",
   component: Badge,
+  tags: ['autodocs'],
 };
 
 export const ActiveBadge = () => (

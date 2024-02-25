@@ -5,8 +5,9 @@ import { ReactComponent as ExampleIcon } from "../../../assets/icons/Share.svg";
 import { ReactComponent as GoogleExampleIcon } from "../../../assets/icons/SociaIcon.svg";
 
 export default {
-  title: "Button",
+  title: "Design System/Atoms/Button",
   component: Button,
+  tags: ['autodocs'],
 };
 
 export const PrimaryButton = () => (

@@ -4,7 +4,7 @@ import './label.css'
 
 
 export default {
-  title: 'Label',
+  title: 'Design System/Atoms/Label',
   component: Label,
 };
 

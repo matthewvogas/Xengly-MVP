@@ -3,7 +3,7 @@ import Tabs from './tabs.jsx';
 import './tabs.css';
 
 export default {
-  title: 'Tabs',
+  title: 'Design System/Molecules/Tabs',
   component: Tabs,
 };
 

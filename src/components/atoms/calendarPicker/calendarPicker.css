@@ -1,0 +1,15 @@
+@import '../../../global.css';
+
+.date-picker-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.date-picker-input:focus {
+  border-color: var(--color-purple-basic);
+}

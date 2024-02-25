@@ -3,7 +3,7 @@ import Input from "./input.jsx";
 import { ReactComponent as ExampleIcon } from "../../../assets/icons/Search.svg";
 
 export default {
-  title: "Input",
+  title: "Design System/Atoms/Input",
   component: Input,
 };
 

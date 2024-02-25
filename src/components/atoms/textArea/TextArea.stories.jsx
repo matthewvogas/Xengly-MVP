@@ -3,7 +3,7 @@ import TextArea from './textArea.jsx';
 import './textArea.css'
 
 export default {
-  title: 'TextArea',
+  title: 'Design System/Atoms/TextArea',
   component: TextArea,
 };
 

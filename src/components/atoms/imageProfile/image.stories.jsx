@@ -5,7 +5,7 @@ import ImageExample from "../../../assets/images/imageProfile.jpg";
 import "./image.css";
 
 export default {
-  title: "Image Profile",
+  title: "Design System/Atoms/Image Profile",
   component: Image,
 };
 
