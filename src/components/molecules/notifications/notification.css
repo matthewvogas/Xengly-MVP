@@ -1,0 +1,40 @@
+@import '../../../global.css';
+
+.notification-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    width: 100%;
+    border-bottom: 1px solid var(--color-gray-basic);
+    justify-content: space-between;
+}
+
+.notification-container .content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 1000px;
+    object-fit: cover;
+}
+.trash{
+    width: 18px;
+    height: 18px;
+}
+
+.notification-message {
+    color: var(--placeholder-principal);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.notification-title {
+    color: var(--color-black-basic);
+    font-weight: 500;
+    font-size: 15px;
+}

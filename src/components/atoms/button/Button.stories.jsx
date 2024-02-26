@@ -59,3 +59,5 @@ IconTextButton.args = {
   className: "button--social",
   withIcon: true,
 };
+
+// creador boton de solo icono
