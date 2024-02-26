@@ -1,0 +1,41 @@
+@import '../../../global.css';
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.badges {
+    margin-top: 12px;
+    display: flex;
+    gap: 6px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.creatorCard {
+    padding: 18px;
+    border: solid 1px var(--color-gray-basic);
+    border-radius: 8px;
+    max-width: 364px;
+}
+
+.image {
+    border-radius: 6px;
+    width: 100%;
+}
+
+.content {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.content div {
+    display: flex;
+    gap: 4px;
+}
+
+.content div p {
+    color: var(--color-purple-second);
+}

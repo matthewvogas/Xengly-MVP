@@ -1,4 +1,15 @@
-:root {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+:root {  
   /* for buttons or inputs backgrounds  */
   --color-purple-basic: #7f56d9;
   --color-purple-second: #523595;
@@ -16,6 +27,7 @@
   /* For titles and labesl */
   --color-black-basic: #344054;
   --color-black-second: #475467;
+  --color-black-third: rgb(91, 101, 117);
 
   /* for inputs placeholders */
   --placeholder-principal: #667085;

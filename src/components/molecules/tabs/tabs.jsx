@@ -7,7 +7,7 @@ const Tabs = ({ tabs, className }) => {
   return (
     <div className={`tabs-container ${className}`}>
       <div className='tabs-buttons'>
-        {tabs.map((tab, index) => (
+        {tabs && tabs.map((tab, index) => (
           <button
             key={index}
             className={`tab-button ${index === activeTab ? 'active' : ''}`}
@@ -18,7 +18,7 @@ const Tabs = ({ tabs, className }) => {
         ))}
       </div>
       <div className={`tab-content ${className}`}>
-        {tabs[activeTab].content || ''}
+        {tabs && tabs[activeTab] && tabs[activeTab].content || ''}
       </div>
     </div>
   );

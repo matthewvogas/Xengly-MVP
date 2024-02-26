@@ -1,12 +1,27 @@
-import React from 'react';
-import Toggle from './toggle.jsx';
-import './toggle.css'
+import React from "react";
+import Toggle from "./toggle.jsx";
+import "./toggle.css";
 
 export default {
-  title: 'Design System/Atoms/Toggle',
+  title: "Design System/Atoms/Toggle",
   component: Toggle,
+  tags: ["autodocs"],
+  argTypes: {
+    className: {
+      type: "select",
+      options: ["toggle", "toggled"],
+    },
+  },
 };
 
-export const ToggleNormal = () => <Toggle className="toggle"/>;
+const Template = (args) => <Toggle {...args} />;
 
-export const ToggleActive = () => <Toggle className="toggled"/>;
+export const ToggleNormal = Template.bind({});
+ToggleNormal.args = {
+  className: "toggle",
+};
+
+export const ToggleActive = Template.bind({});
+ToggleActive.args = {
+  className: "toggled",
+};
