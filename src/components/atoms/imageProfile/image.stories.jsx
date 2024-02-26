@@ -29,5 +29,10 @@ export const imageProfile = Template.bind({});
 imageProfile.args = {
   className: "ImageProfile",
   profileImage: ImageExample
+};
 
+export const imageProfileMenu = Template.bind({});
+imageProfile.args = {
+  className: "ImageProfileMenu",
+  profileImage: ImageExample
 };
