@@ -2,6 +2,7 @@
 
 .Title {
     font-size: 30px;
+    font-weight: 600;
     color: var(--color-black-basic);
 }
 
@@ -11,16 +12,23 @@
 }
 
 .SubTitle {
-    font-size: 28px;
+    font-size: 26px;
+    font-weight: 600;
     color: var(--color-black-basic);
 }
 
 .SubTitleText {
     font-size: 16px;
-    color: var(--color-black-second);
+    color: var(--color-black-third);
 }
 
-.badgeLabel {
+.LabelInput {
+    font-size: 14px;
+    color: var(--color-black-third);
+}
+
+.BadgeLabel {
+    font-weight: 600;
     font-size: 14px;
     color: var(--color-purple-second);
 }

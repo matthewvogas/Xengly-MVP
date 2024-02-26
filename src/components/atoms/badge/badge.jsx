@@ -1,11 +1,11 @@
 import React from "react";
 import "./badge.css";
 
-const Badge = ({ text, className, icon: Icon }) => {
+const Badge = ({ text, className, x }) => {
   return (
     <button className={className}>
       {text}
-      {Icon && <Icon className="icon"/>}
+      {x && <img src={x} alt="x" className="icon" />}
     </button>
   );
 };

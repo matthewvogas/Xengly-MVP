@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Label = ({ texto, className }) => {
-  return <p className={className}>{texto}</p>;
+const Label = ({ text, className }) => {
+  return <p className={className}>{text}</p>;
 };
 
 export default Label;

@@ -7,10 +7,13 @@ export default {
   component: Tabs,
 };
 
-const defaultTabs = [
-  { title: 'Tab 1', content: 'Content 1' },
-  { title: 'Tab 2', content: 'Content 2' },
-  { title: 'Tab 3', content: 'Content 3' },
-];
+const Template = (args) => <Tabs {...args} />;
 
-export const DefaultTabs = () => <Tabs tabs={defaultTabs} />;
+export const DefaultTabs = Template.bind({});
+DefaultTabs.args = {
+  tabs: [
+    { title: 'Tab 1', content: 'Content 1' },
+    { title: 'Tab 2', content: 'Content 2' },
+    { title: 'Tab 3', content: 'Content 3' },
+  ],
+};

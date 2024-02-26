@@ -1,25 +1,42 @@
-import React from "react";
+import ex from "../../../assets/icons/X.svg";
 import Badge from "./badge.jsx";
+import React from "react";
 import "./badge.css";
-import { ReactComponent as ex } from "../../../assets/icons/X.svg";
 
 export default {
   title: "Design System/Atoms/Badge",
   component: Badge,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
+  argTypes: {
+    text: { control: "text" },
+    className: {
+      type: 'select',
+      options: ["active", "normal-disabled", "normal"],
+    },
+    x: {
+      control: 'text',
+    },
+  },
 };
 
-export const ActiveBadge = () => (
-  <Badge text="badge text" icon={ex} className="active" />
-);
+const Template = (args) =>  <Badge {...args} />
 
-export const DisabledBadge = () => (
-  <Badge text="badge text" className="normal-disabled" />
-);
+export const ActiveBadge = Template.bind({}) 
+ActiveBadge.args = {
+  text: 'hello',
+  className: 'active',
+  x: ex
+}
 
-export const NormalBadge = () => (
-  <Badge
-    text="badge text"
-    className="normal"
-  />
-);
+export const DisabledBadge = Template.bind({}) 
+DisabledBadge.args = {
+  text: 'hello',
+  className: 'normal-disabled'
+}
+
+export const NormalBadge = Template.bind({}) 
+NormalBadge.args = {
+  text: 'hello',
+  className: 'normal'
+}
+

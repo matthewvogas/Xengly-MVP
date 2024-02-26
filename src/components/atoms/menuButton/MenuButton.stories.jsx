@@ -1,26 +1,33 @@
 import React from "react";
-import MenuButton from "./manuButton.jsx";
+import MenuButton from "./manuButton";
 import "./menuButton.css";
-import { ReactComponent as GoogleExampleIcon } from "../../../assets/icons/menu/home.svg";
+import { ReactComponent as iconExample } from "../../../assets/icons/menu/home.svg";
 
 export default {
   title: "Design System/Atoms/Menu Buttons",
   component: MenuButton,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
+  argTypes: {
+    text: { control: "text" },
+    className: {
+      type: "select",
+      options: ["button--normal", "button--active"],
+    },
+  },
 };
 
-export const NormalButton = () => (
-  <MenuButton
-    text="Encuentros"
-    icon={GoogleExampleIcon}
-    className="button--normal"
-  />
+const Template = (args) => (
+  <MenuButton {...args} icon={args.withIcon ? iconExample : iconExample} />
 );
 
-export const ActiveButton = () => (
-  <MenuButton
-    text="Encuentros"
-    icon={GoogleExampleIcon}
-    className="button--active"
-  />
-);
+export const NormalButton = Template.bind({});
+NormalButton.args = {
+  text: "Encuentros",
+  className: "button--normal",
+};
+
+export const ActiveButton = Template.bind({});
+ActiveButton.args = {
+  ...NormalButton.args,
+  className: "button--active",
+};

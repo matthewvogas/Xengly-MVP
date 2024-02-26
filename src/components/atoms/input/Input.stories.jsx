@@ -5,21 +5,29 @@ import { ReactComponent as ExampleIcon } from "../../../assets/icons/Search.svg"
 export default {
   title: "Design System/Atoms/Input",
   component: Input,
+  tags: ["autodocs"],
+  argTypes: {
+    placeholder: { control: 'text' },
+    withIcon: { control: 'boolean' },
+  },
 };
 
-export const DefaultInput = () => (
+const Template = (args) => (
   <Input
-    className="input--container"
-    placeholder="placeholder"
-    text="placeholder"
+    {...args}
+    icon={args.withIcon ? ExampleIcon : null}
   />
 );
 
-export const IconInput = () => (
-  <Input
-    icon={ExampleIcon}
-    className="input--container"
-    placeholder="placeholder"
-    text="placeholder"
-  />
-);
+export const DefaultInput = Template.bind({});
+DefaultInput.args = {
+  className: 'input--container',
+  placeholder: 'placeholder',
+  withIcon: false,
+};
+
+export const IconInput = Template.bind({});
+IconInput.args = {
+  ...DefaultInput.args,
+  withIcon: true,
+};

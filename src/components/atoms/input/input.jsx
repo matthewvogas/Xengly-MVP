@@ -4,7 +4,7 @@ import "./input.css";
 const Input = ({ className, type, placeholder, icon: Icon }) => {
   return (
     <div className={className}>
-      {Icon && <Icon />}
+      {Icon && <Icon className='icon' />}
       <input className="textInput" type={type} placeholder={placeholder} />
     </div>
   );
