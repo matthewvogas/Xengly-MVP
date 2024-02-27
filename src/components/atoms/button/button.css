@@ -61,6 +61,15 @@
   color: var(--color-black-basic);
 }
 
+.button--primary,
+.button--primary--disabled,
+.button--cancel,
+.button--share,
+.button--social {
+  height: 48px; 
+  min-width: 120px; 
+}
+
 .icon {
   min-height: 14px;
   min-width: 14px;

@@ -22,7 +22,7 @@
   flex-direction: row;
   border-radius: var(--button-radius);
   border: none;
-  background-color: var(--color-white-second);
+  background-color: rgb(243, 243, 243);
   padding: 8px 32px 8px 12px;
   width: 100%;
   font-weight: 500;

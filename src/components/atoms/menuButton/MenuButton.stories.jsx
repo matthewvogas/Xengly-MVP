@@ -1,5 +1,5 @@
 import React from "react";
-import MenuButton from "./manuButton";
+import MenuButton from "./menuButton";
 import "./menuButton.css";
 import { ReactComponent as iconExample } from "../../../assets/icons/menu/home.svg";
 

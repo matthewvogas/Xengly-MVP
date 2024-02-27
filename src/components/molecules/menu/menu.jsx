@@ -1,8 +1,7 @@
 import React from "react";
 import "./menu.css";
-import MenuButton from "../../atoms/menuButton/manuButton";
+import MenuButton from "../../atoms/menuButton/menuButton";
 import Image from "../../atoms/imageProfile/image";
-import Button from "../../atoms/button/button";
 
 // icons
 import { ReactComponent as discover } from "../../../assets/icons/menu/home.svg";
