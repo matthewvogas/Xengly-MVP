@@ -1,6 +1,6 @@
 @import '../../../global.css';
 
-.notification-container {
+.appPicker-container {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -9,21 +9,22 @@
     justify-content: space-between;
 }
 
-.notification-container .content {
+.appPicker-container .content {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
+    margin-top: 0px;
 }
-.notification-container .content div {
+.appPicker-container .content div {
     display: flex;
     flex-direction: column;
 }
 
-.notification-icon {
+.appPickup-icon {
     width: 40px;
     height: 40px;
-    margin-right: 20px;
+    margin-right: 6px;
     border-radius: 1000px;
     object-fit: cover;
 }
@@ -32,13 +33,13 @@
     height: 18px;
 }
 
-.notification-message {
+.appPickup-message {
     color: var(--placeholder-principal);
     font-weight: 500;
     font-size: 14px;
 }
 
-.notification-title {
+.appPickup-title {
     color: var(--color-black-basic);
     font-weight: 500;
     font-size: 15px;

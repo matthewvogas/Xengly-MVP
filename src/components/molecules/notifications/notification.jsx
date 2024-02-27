@@ -1,6 +1,4 @@
-// Notification.js
 import React from "react";
-import "./notification.css";
 import "./notification.css";
 import Image from "../../../assets/images/exampleImage.jpg";
 import ex from "../../../assets/icons/X.svg";

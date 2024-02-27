@@ -1,0 +1,31 @@
+@import '../../../global.css';
+
+.setSchedule-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    width: 100%;
+    border-bottom: 1px solid var(--color-gray-basic);
+    justify-content: space-between;
+}
+.setSchedule-container .time {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+}
+
+.setSchedule-container .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.setSchedule-title {
+    color: var(--color-black-basic);
+    font-weight: 600;
+    font-size: 18px;
+}
