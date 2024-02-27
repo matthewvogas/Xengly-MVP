@@ -1,4 +1,5 @@
 import React from "react";
+import './menuButton.css'
 
 const MenuButton = ({ text, className, icon: Icon }) => {
   return (

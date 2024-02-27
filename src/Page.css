@@ -1,3 +1,21 @@
 .layout {
   display: flex;
+  height: 100vh;
+}
+
+.layout .content{
+  background-color: #FCFCFD;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.layout .content .module{
+  max-width: 896px;
+  width: 100%;
+}
+
+.sidebar {
+  max-width: 322px;
+  justify-self: start;
 }

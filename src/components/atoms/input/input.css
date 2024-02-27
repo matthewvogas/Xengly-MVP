@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   box-shadow: var(--shadow-buttons);
+  padding-right: 8px;
 }
 
 input {
@@ -23,6 +24,9 @@ input {
 .textInput {
   padding-left: 8px;
 }
+
 .icon {
   padding-left: 2px;
+  width: 20px;
+  height: 20px;
 }

@@ -16,7 +16,7 @@ body {
   --color-purple-third: #F9F5FF;
   --color-white-basic: #ffffff;
   --color-white-second: #f9fafb; 
-  --color-white-disabled: #e6e6e6;
+  --color-white-disabled: #ececec;
 
   /* for disabled buttons, divs texts */
   --color-text-disabled: #a0a0a0;

@@ -16,7 +16,6 @@
     padding: 18px;
     border: solid 1px var(--color-gray-basic);
     border-radius: 8px;
-    max-width: 364px;
 }
 
 .image {
@@ -24,18 +23,18 @@
     width: 100%;
 }
 
-.content {
+.contentCreator {
     margin-top: 12px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.content div {
+.contentCreator div {
     display: flex;
     gap: 4px;
 }
 
-.content div p {
+.contentCreator div p {
     color: var(--color-purple-second);
 }

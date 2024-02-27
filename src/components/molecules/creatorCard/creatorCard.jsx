@@ -19,11 +19,6 @@ const CreatorCard = ({
     "bro",
     "pending",
     "hello",
-    "bro",
-    "pending",
-    "hello",
-    "bro",
-    "pending",
   ];
 
   const badgesToRender = badges || badgesExample;
@@ -31,7 +26,7 @@ const CreatorCard = ({
   return (
     <div className={`creatorCard`}>
       <img className="image" src={imageUri || image} alt="" />
-      <div className="content">
+      <div className="contentCreator">
         <div>
           <Label className="badgeLabel" text={label || "Developer"} />
           <p>•</p>
