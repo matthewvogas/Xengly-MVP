@@ -1,8 +1,10 @@
 @import '../../../global.css';
 
 .tabs-buttons {
-    border-bottom: 2px solid var(--color-white-second);
+    border-bottom: 2px solid var(--color-gray-border);
     margin-bottom: 32px;
+    display: flex;
+    gap: 8px;
 }
 
 .tab-button {
@@ -15,5 +17,5 @@
     border-bottom: 2px solid var(--color-purple-basic);
     margin-bottom: -2px;
     color: var(--color-purple-basic);
-    font-weight: 600;
+    border-radius: 0px;
 }

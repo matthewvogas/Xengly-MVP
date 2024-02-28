@@ -1,7 +1,8 @@
 import React from 'react';
+import './textArea.css'
 
-const TextArea = ({ placeholder, className, labelTextArea }) => {
-  return <textarea className={className} placeholder={placeholder} name="" id="" cols="30" rows="10"></textarea>
+const TextArea = ({ placeholder, className, maxLength }) => {
+  return <textarea className={className} placeholder={placeholder} name="biography" maxLength={maxLength} ></textarea>
 };
 
 export default TextArea;

@@ -8,11 +8,11 @@ import "./Page.css";
 import Menu from "./components/molecules/menu/menu";
 
 // routes
-import Notifications from "./app/pages/notifications";
-import Checkout from "./app/pages/checkout";
-import Discover from "./app/pages/discover";
-import Settings from "./app/pages/settings";
-import Xengler from "./app/pages/xengler";
+import Notifications from "./pages/notifications";
+import Checkout from "./pages/checkout";
+import Discover from "./pages/discover";
+import Settings from "./pages/settings";
+import Xengler from "./pages/xengler";
 
 // export
 const App = () => (
@@ -24,11 +24,11 @@ const App = () => (
     <div className="content">
       <div className="module">
         <Routes>
-          <Route index element={<Discover />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="xengler" element={<Xengler />} />
-          <Route path="Notifications" element={<Notifications />} />
-          <Route path="Checkout" element={<Checkout />} />
+          <Route index Component={Discover} />
+          <Route path="settings" Component={Settings} />
+          <Route path="xengler" Component={Xengler} />
+          <Route path="notifications" Component={Notifications} />
+          <Route path="checkout" Component={Checkout} />
         </Routes>
       </div>
     </div>

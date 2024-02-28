@@ -1,4 +1,4 @@
-import XenglerOrganism from '../../components/organisms/creator/creator'
+import XenglerOrganism from '../components/organisms/creator/creator'
 
 const Xengler = () => {
   return <XenglerOrganism/>;

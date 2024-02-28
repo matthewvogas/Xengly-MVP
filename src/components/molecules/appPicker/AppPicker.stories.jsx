@@ -1,6 +1,6 @@
-import React from "react";
-import AppPicker from "./appPicker"; 
 import Image from "../../../assets/images/exampleImage.jpg";
+import AppPicker from "./appPicker"; 
+import React from "react";
 
 export default {
   title: "Design System/Molecules/App Picker",

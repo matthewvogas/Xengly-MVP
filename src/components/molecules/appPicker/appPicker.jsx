@@ -1,10 +1,9 @@
+import Image from "../../../assets/images/exampleImage.jpg";
+import Toggle from "../../atoms/toggle/toggle";
 import React from "react";
 import "./appPicker.css";
-import Image from "../../../assets/images/exampleImage.jpg";
-import Toggle from '../../atoms/toggle/toggle'
 
 const AppPicker = ({ icon, message, title }) => {
-
   const renderedImage = icon || Image;
 
   return (
@@ -24,7 +23,9 @@ const AppPicker = ({ icon, message, title }) => {
           </span>
         </div>
       </div>
-      <Toggle/>
+      <div>
+        <Toggle />
+      </div>
     </div>
   );
 };

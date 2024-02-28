@@ -2,7 +2,7 @@
 
 .time-picker {
   position: relative;
-  width: 200px;
+  width: 100%;
 }
 
 .time-picker-button {
@@ -12,6 +12,7 @@
   border: 1px solid var(--color-gray-basic);
   cursor: pointer;
   border-radius: 5px; 
+  min-height: 42px;
 }
 
 .time-picker-list {

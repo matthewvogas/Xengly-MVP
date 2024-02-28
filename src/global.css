@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 
@@ -24,16 +24,20 @@ body {
   /* For borders of buttons, divs, etc...*/
   --color-gray-basic: #d0d5dd;
 
+  /* dividers */
+  --color-gray-border: #eef0f4;
+
   /* For titles and labesl */
   --color-black-basic: #344054;
   --color-black-second: #475467;
-  --color-black-third: rgb(91, 101, 117);
+  --color-black-third: rgb(130, 141, 158);
 
   /* for inputs placeholders */
   --placeholder-principal: #667085;
 
   /* Shadows */
   --shadow-buttons: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-inputs: 0px 2px 6px 0px rgba(16, 24, 40, 0.074);
 
   /* radius */
   /* buttons */

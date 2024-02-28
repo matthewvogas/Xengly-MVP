@@ -1,0 +1,72 @@
+@import '../../../../global.css';
+
+.profile .titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.profile .actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    justify-content: end;
+}
+
+.profile {
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    border-bottom: 2px solid var(--color-gray-border);
+    padding-bottom: 24px;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.schedules {
+    margin-top: 12px;
+}
+
+.bio {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bio .SubTitleText {
+    margin-top: 12px;
+}
+
+.profile--location .location {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.profile--online .online {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.profile--images .images {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.apps {
+    width: 100%;
+}
+
+.LabelInput{
+    padding-right: 32%;
+}
