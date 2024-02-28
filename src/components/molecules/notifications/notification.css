@@ -14,7 +14,9 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    justify-content: start;
 }
+
 .notification-container .content div {
     display: flex;
     flex-direction: column;
@@ -40,6 +42,7 @@
 
 .notification-title {
     color: var(--color-black-basic);
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
 }

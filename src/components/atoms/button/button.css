@@ -7,7 +7,7 @@
   box-shadow: var(--shadow-buttons);
   color: var(--color-white-basic);
   padding: 10px;
-  width: 100%;
+  width: auto;
   font-weight: bold;
 }
 
@@ -18,7 +18,7 @@
   box-shadow: var(--shadow-buttons);
   color: var(--color-text-disabled);
   padding: 10px;
-  width: 100%;
+  width: auto;
   font-weight: bold;
 }
 
@@ -29,7 +29,7 @@
   box-shadow: var(--shadow-buttons);
   color: var(--color-black-basic);
   padding: 10px;
-  width: 100%;
+  width: auto;
   font-weight: bold;
 }
 
@@ -39,7 +39,7 @@
   background-color: var(--color-purple-basic);
   box-shadow: var(--shadow-buttons);
   padding: 10px;
-  width: 100%;
+  width: auto;
   display: flex;
   align-items: center;
   color: #FFF;
@@ -56,7 +56,7 @@
   background-color: transparent;
   box-shadow: var(--shadow-buttons);
   padding: 10px;
-  width: 100%;
+  width: auto;
   font-weight: bold;
   color: var(--color-black-basic);
 }
@@ -66,8 +66,9 @@
 .button--cancel,
 .button--share,
 .button--social {
-  height: 48px; 
-  min-width: 120px; 
+  height: 44px; 
+  max-width: 280px; 
+  min-width: 102px; 
 }
 
 .icon {

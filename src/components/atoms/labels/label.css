@@ -8,11 +8,11 @@
 
 .TitleText {
     font-size: 17px;
-    color: var(--color-black-second);
+    color: var(--color-black-third);
 }
 
 .SubTitle {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 600;
     color: var(--color-black-basic);
 }

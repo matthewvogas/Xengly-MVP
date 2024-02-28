@@ -7,13 +7,17 @@ export default {
   component: Tabs,
 };
 
+const TabContent1 = () => <div>Content 1</div>;
+const TabContent2 = () => <div>Content 2</div>;
+const TabContent3 = () => <div>Content 3</div>;
+
 const Template = (args) => <Tabs {...args} />;
 
 export const DefaultTabs = Template.bind({});
 DefaultTabs.args = {
   tabs: [
-    { title: 'Tab 1', content: 'Content 1' },
-    { title: 'Tab 2', content: 'Content 2' },
-    { title: 'Tab 3', content: 'Content 3' },
+    { title: 'Tab 1', content: () => TabContent1 },
+    { title: 'Tab 2', content: () => TabContent2 },
+    { title: 'Tab 3', content: () => TabContent3 },
   ],
 };

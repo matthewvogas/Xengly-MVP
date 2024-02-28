@@ -9,6 +9,8 @@
     border: 1px solid var(--color-gray-basic);
     resize: none;
     outline: none;
+    height: 126px;
+    background: transparent;
 }
 
 .textArea:focus {
@@ -19,4 +21,3 @@
 .textArea::placeholder {
     color: var(--placeholder-principal);
 }
-

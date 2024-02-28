@@ -2,8 +2,9 @@ import React from "react";
 import "./setSchedule.css";
 import Image from "../../../assets/images/exampleImage.jpg";
 import TimePicker from "../../atoms/timePicker/timePicker";
+import Button from "../../atoms/button/button";
 
-const SetSchedule = ({ icon, message, title }) => {
+const SetSchedule = ({ icon, title }) => {
   const renderedImage = icon || Image;
 
   return (
@@ -19,13 +20,13 @@ const SetSchedule = ({ icon, message, title }) => {
           { start: "16:00", end: "18:00" },
         ]}
       />
-      <p>To</p>
       <TimePicker
         excludedTimes={[
           { start: "00:00", end: "12:00" },
           { start: "16:00", end: "18:00" },
         ]}
       />
+      <Button className='button--primary' text="añadir" />
       </div>
     </div>
   );

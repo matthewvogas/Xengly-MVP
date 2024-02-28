@@ -1,4 +1,4 @@
-import CheckoutOrganism from '../../components/organisms/checkout/checkout'
+import CheckoutOrganism from '../components/organisms/checkout/checkout'
 
 const Checkout = () => {
   return <CheckoutOrganism/>;

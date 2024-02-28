@@ -4,7 +4,7 @@ import './menuButton.css'
 const MenuButton = ({ text, className, icon: Icon }) => {
   return (
     <button className={className}>
-      {Icon && <Icon className="icon" />}
+      {Icon && <Icon className="icon--menu" />}
       {text}
     </button>
   );
