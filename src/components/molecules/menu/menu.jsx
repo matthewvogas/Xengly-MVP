@@ -1,51 +1,36 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./menu.css";
 import MenuButton from "../../atoms/menuButton/menuButton";
 import Image from "../../atoms/imageProfile/image";
 
-// icons
-import { ReactComponent as discover } from "../../../assets/icons/menu/home.svg";
-import { ReactComponent as notifications } from "../../../assets/icons/menu/bell.svg";
-import { ReactComponent as meets } from "../../../assets/icons/menu/coffee.svg";
-import { ReactComponent as messages } from "../../../assets/icons/menu/message-square.svg";
-import { ReactComponent as settings } from "../../../assets/icons/menu/user.svg";
-import { ReactComponent as signOut } from "../../../assets/icons/menu/user.svg";
 import Logo from "../../../assets/icons/menu/menuLogo.svg";
 
 import profileImage from "../../../assets/images/imageProfile.jpg";
 
-const Menu = ({ profileUri }) => {
+const Menu = ({ routes, profileUri }) => {
   const renderedProfileImage = profileUri || profileImage;
+  const location = useLocation();
 
   return (
     <div className="menu-container">
       <div>
         <div className="logo">
-          <img src={Logo} alt="log" className="logo" />
+          <img src={Logo} alt="logo" className="logo" />
         </div>
 
         <div className="menu-items">
-          <MenuButton
-            text="Discover"
-            className="button--normal"
-            icon={discover}
-          />
-          <MenuButton
-            text="Encuentros"
-            className="button--active"
-            icon={meets}
-          />
-          <MenuButton text="Chats" className="button--normal" icon={messages} />
-          <MenuButton
-            text="Notificaciones"
-            className="button--normal"
-            icon={notifications}
-          />
-          <MenuButton
-            text="Perfil"
-            className="button--normal"
-            icon={settings}
-          />
+          {routes.map(({ index, path, name, icon }) => (
+            <MenuButton
+              key={index}
+              to={path}
+              text={name}
+              className={
+                location.pathname === path ? "button--active" : "button--normal"
+              }
+              icon={icon}
+            />
+          ))}
         </div>
       </div>
 
