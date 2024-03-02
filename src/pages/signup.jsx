@@ -1,7 +1,7 @@
-import SignupOrganism from '../components/organisms/signup/signup'
+import SignupOrganism from "../components/organisms/signup/signup";
 
 const Signup = () => {
-  return <SignupOrganism/>;
+  return <SignupOrganism />;
 };
 
 export default Signup;
