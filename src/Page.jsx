@@ -26,7 +26,12 @@ import Login from "./pages/login";
 // export
 const routes = [
   { path: "/", Component: Discover, name: "Discover", icon: discover },
-  { path: "/notifications", Component: Notifications, name: "Notifications", icon: notifications },
+  {
+    path: "/notifications",
+    Component: Notifications,
+    name: "Notifications",
+    icon: notifications,
+  },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
   { path: "/signup", Component: Signup, name: "Signup" },
   { path: "/login", Component: Login, name: "Signup" },
@@ -36,8 +41,8 @@ const routes = [
 
 const App = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
-    return <Signup />;
-    // return <Login />; si quiere ver el Login y jugar con back
+    // return <Signup />;
+    return <Login />; //si quiere ver el Login y jugar con back
   }
 
   return (
