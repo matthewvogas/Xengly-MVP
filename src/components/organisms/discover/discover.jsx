@@ -6,14 +6,13 @@ import Search from "../../atoms/input/input";
 import Creator from "../../molecules/creatorCard/creatorCard";
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./discover.css";
+import useBadgeStore from "./store";
 
-const NotificationsOrganism = ({ badges, creators }) => {
-  const badgesDefault = [
-    { text: "Bailarinas", className: "active" },
-    { text: "Influencers", className: "active" },
-    { text: "Deportistas", className: "normal" },
-    { text: "Músicos", className: "normal" },
-  ];
+const NotificationsOrganism = ({ creators }) => {
+  const badges = useBadgeStore((state) => state.badges);
+  const toggleBadge = useBadgeStore((state) => state.toggleBadge);
+
+  const sortedBadges = [...badges].sort((a, b) => (b.isActive ? 1 : -1));
 
   const creatorsDefault = [
     {
@@ -53,7 +52,6 @@ const NotificationsOrganism = ({ badges, creators }) => {
     },
   ];
 
-  const badgesToRender = badges || badgesDefault;
   const creatorsToRender = creators || creatorsDefault;
 
   return (
@@ -70,8 +68,13 @@ const NotificationsOrganism = ({ badges, creators }) => {
       </div>
 
       <div className="badges--filter">
-        {badgesToRender.map((badge, index) => (
-          <Badge key={index} text={badge.text} className={badge.className} />
+        {sortedBadges.map((badge, index) => (
+          <Badge
+            key={index}
+            text={badge.text}
+            className={badge.isActive ? "active" : "normal"}
+            onClick={() => toggleBadge(badge.text)}
+          />
         ))}
       </div>
 
