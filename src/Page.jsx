@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./components/molecules/menu/menu.css";
 // css
 import "./Page.css";
@@ -21,32 +21,40 @@ import Checkout from "./pages/checkout";
 import Discover from "./pages/discover";
 import Settings from "./pages/settings";
 import Xengler from "./pages/xengler";
+import Signup from "./pages/signup";
 
 // export
 const routes = [
   { path: "/", Component: Discover, name: "Discover", icon: discover },
   { path: "/notifications", Component: Notifications, name: "Notifications", icon: notifications },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
+  { path: "/signup", Component: Signup, name: "Signup" },
   // { path: "/xengler", Component: Xengler, name: "Xengler", icon: meets },
   // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 
-const App = () => (
-  <div className="layout">
-    <div className="sidebar">
-      <Menu routes={routes} />
-    </div>
+const App = ({ isLoggedIn }) => {
+  if (!isLoggedIn) {
+    return <Signup />;
+  }
 
-    <div className="content">
-      <div className="module">
-        <Routes>
-          {routes.map(({ path, Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-        </Routes>
+  return (
+    <div className="layout">
+      <div className="sidebar">
+        <Menu routes={routes} />
+      </div>
+
+      <div className="content">
+        <div className="module">
+          <Routes>
+            {routes.map(({ path, Component }) => (
+              <Route key={path} path={path} element={<Component />} />
+            ))}
+          </Routes>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;
