@@ -7,8 +7,6 @@ import "./Page.css";
 // components
 import Menu from "./components/molecules/menu/menu";
 
-// routes
-
 // icons
 import { ReactComponent as discover } from "../src/assets/icons/menu/home.svg";
 import { ReactComponent as notifications } from "../src/assets/icons/menu/bell.svg";
@@ -21,7 +19,9 @@ import Checkout from "./pages/checkout";
 import Discover from "./pages/discover";
 import Settings from "./pages/settings";
 import Xengler from "./pages/xengler";
+
 import Signup from "./pages/signup";
+import Login from "./pages/login";
 
 // export
 const routes = [
@@ -29,6 +29,7 @@ const routes = [
   { path: "/notifications", Component: Notifications, name: "Notifications", icon: notifications },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
   { path: "/signup", Component: Signup, name: "Signup" },
+  { path: "/login", Component: Login, name: "Signup" },
   // { path: "/xengler", Component: Xengler, name: "Xengler", icon: meets },
   // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
@@ -36,6 +37,7 @@ const routes = [
 const App = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
     return <Signup />;
+    // return <Login />; si quiere ver el Login y jugar con back
   }
 
   return (
