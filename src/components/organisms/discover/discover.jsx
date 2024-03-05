@@ -6,6 +6,7 @@ import Search from "../../atoms/input/input";
 import Creator from "../../molecules/creatorCard/creatorCard";
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./discover.css";
+import image from "../../../assets/images/exampleImage.jpg";
 
 const NotificationsOrganism = ({ badges, creators }) => {
   const badgesDefault = [
@@ -18,38 +19,27 @@ const NotificationsOrganism = ({ badges, creators }) => {
   const creatorsDefault = [
     {
       label: "Nombre del Creador 1",
-      subTitle: "Categoría 1",
+      subTitle: "Matthew",
       subTitleText: "Descripción breve 1",
       badges: ["Badge 1", "Badge 2"],
       age: "Edad 1",
+      username: "burgerqueen",
     },
     {
       label: "Nombre del Creador 2",
-      subTitle: "Categoría 2",
+      subTitle: "Montero",
       subTitleText: "Descripción breve 2",
       badges: ["Badge 3", "Badge 4"],
       age: "Edad 2",
+      username: "fiestasnack",
     },
     {
       label: "Nombre del Creador 2",
-      subTitle: "Categoría 2",
+      subTitle: "Minor",
       subTitleText: "Descripción breve 2",
       badges: ["Badge 3", "Badge 4"],
       age: "Edad 2",
-    },
-    {
-      label: "Nombre del Creador 2",
-      subTitle: "Categoría 2",
-      subTitleText: "Descripción breve 2",
-      badges: ["Badge 3", "Badge 4"],
-      age: "Edad 2",
-    },
-    {
-      label: "Nombre del Creador 2",
-      subTitle: "Categoría 2",
-      subTitleText: "Descripción breve 2",
-      badges: ["Badge 3", "Badge 4"],
-      age: "Edad 2",
+      username: "patient0",
     },
   ];
 
@@ -87,12 +77,14 @@ const NotificationsOrganism = ({ badges, creators }) => {
       <div className="creators--container">
         {creatorsToRender.map((creator, index) => (
           <Creator
+            imageUri={image}
             key={index}
             label={creator.label}
             subTitle={creator.subTitle}
             subTitleText={creator.subTitleText}
             badges={creator.badges}
             age={creator.age}
+            username={creator.username}
           />
         ))}
       </div>

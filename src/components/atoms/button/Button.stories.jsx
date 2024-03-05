@@ -12,7 +12,7 @@ export default {
   argTypes: {
     text: { control: 'text' },
     className: {
-      type: 'select', options: ['button--primary', 'button--primary--disabled', 'button--cancel', 'button--share', 'button--social'],
+      type: 'select', options: ['button--primary', 'button--primary--disabled', 'button--secondary', 'button--icon', 'button--icon-text'],
     },
     withIcon: { control: 'boolean' },
   },
@@ -22,7 +22,7 @@ const Template = (args) => (
   <Button
     {...args}
     onClick={action('button-click')}
-    icon={args.withIcon ? (args.className === 'button--social' ? GoogleExampleIcon : ExampleIcon) : null}
+    icon={args.withIcon ? (args.className === 'button--icon-text' ? GoogleExampleIcon : ExampleIcon) : null}
   />
 );
 
@@ -43,20 +43,20 @@ PrimaryButtonDisabled.args = {
 export const SecondaryButton = Template.bind({});
 SecondaryButton.args = {
   text: "Submit",
-  className: "button--cancel",
+  className: "button--secondary",
   withIcon: false,
 };
 
 export const IconButton = Template.bind({});
 IconButton.args = {
-  className: "button--share",
+  className: "button--icon",
   withIcon: true,
 };
 
 export const IconTextButton = Template.bind({});
 IconTextButton.args = {
   text: "Submit",
-  className: "button--social",
+  className: "button--icon-text",
   withIcon: true,
 };
 

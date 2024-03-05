@@ -72,7 +72,7 @@ const LoginOrganism = () => {
           />
           <Button
             icon={Google}
-            className="button--social"
+            className="button--icon-text"
             text="Loguearse con Google"
             onClick={loginWithGoogle}
           />

@@ -94,7 +94,7 @@ const SignupOrganism = () => {
           />
           <Button
             icon={Google}
-            className="button--social"
+            className="button--icon-text"
             text="añadir"
             onClick={signUpWithGoogle}
           />

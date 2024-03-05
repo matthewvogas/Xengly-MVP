@@ -1,7 +1,9 @@
 import CheckoutOrganism from '../components/organisms/checkout/checkout'
+import { useParams } from 'react-router-dom';
 
 const Checkout = () => {
-  return <CheckoutOrganism/>;
+  const { username } = useParams();
+  return <CheckoutOrganism username={username} />;
 };
 
 export default Checkout;

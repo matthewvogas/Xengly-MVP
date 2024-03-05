@@ -50,7 +50,7 @@ const SignupForm = ({}) => {
           <Button text="Create Account" className="button--primary" />
           <Button
             text="Sign Up With Google"
-            className="button--social"
+            className="button--icon-text"
             icon={Google}
           />
         </div>

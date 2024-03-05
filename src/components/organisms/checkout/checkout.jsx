@@ -10,7 +10,7 @@ import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPic
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
 
-const CheckoutOrganism = ({}) => {
+const CheckoutOrganism = ({ username }) => {
   return (
     <section>
       <section>
@@ -20,7 +20,7 @@ const CheckoutOrganism = ({}) => {
           </div>
           <div className="checkout--head">
             <div className="checkout--titles">
-              <Label className="Title" text="Steve, 24" />
+              <Label className="Title" text={`${username}, 24`} />
               <Label className="SubTitleText" text="Influencer" />
             </div>
           </div>

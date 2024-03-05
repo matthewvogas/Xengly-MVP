@@ -19,7 +19,7 @@ const ProfileOrganism = ({}) => {
         </div>
 
         <div className="actions">
-          <Button text="Cancel" className="button--cancel" />
+          <Button text="Cancel" className="button--secondary" />
           <Button text="Save" className="button--primary" />
         </div>
       </div>
