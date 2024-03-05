@@ -34,21 +34,36 @@ const routes = [
   },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
   { path: "/signup", Component: Signup, name: "Signup" },
-  { path: "/login", Component: Login, name: "Signup" },
-  // { path: "/xengler", Component: Xengler, name: "Xengler", icon: meets },
+  { path: "/login", Component: Login, name: "Login" },
+  { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
+  { path: "/xengler/:username/checkout", Component: Checkout, name: "Checkout" },
+  // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
+];
+const menu = [
+  { path: "/", Component: Discover, name: "Discover", icon: discover },
+  {
+    path: "/notifications",
+    Component: Notifications,
+    name: "Notifications",
+    icon: notifications,
+  },
+  { path: "/settings", Component: Settings, name: "Settings", icon: settings },
+  // { path: "/signup", Component: Signup, name: "Signup" },
+  // { path: "/login", Component: Login, name: "Login" },
+  // { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
   // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 
 const App = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
     // return <Signup />;
-    return <Login />; //si quiere ver el Login y jugar con back
+    // return <Login />; //si quiere ver el Login y jugar con back
   }
 
   return (
     <div className="layout">
       <div className="sidebar">
-        <Menu routes={routes} />
+        <Menu routes={menu} />
       </div>
 
       <div className="content">
@@ -57,6 +72,7 @@ const App = ({ isLoggedIn }) => {
             {routes.map(({ path, Component }) => (
               <Route key={path} path={path} element={<Component />} />
             ))}
+            
           </Routes>
         </div>
       </div>

@@ -41,7 +41,7 @@ const LoginForm = ({}) => {
           <Button text="Sign In" className="button--primary" />
           <Button
             text="Sign In With Google"
-            className="button--social"
+            className="button--icon-text"
             icon={Google}
           />
         </div>

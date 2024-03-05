@@ -16,6 +16,8 @@
     padding: 18px;
     border: solid 1px var(--color-gray-basic);
     border-radius: 8px;
+    text-decoration: none;
+    z-index: 10;
 }
 
 .image {
@@ -37,4 +39,24 @@
 
 .contentCreator div p {
     color: var(--color-purple-second);
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+.creatorCard,
+.creatorCard:visited,
+.creatorCard:hover,
+.creatorCard:active,
+.creatorCard:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
 }

@@ -22,7 +22,7 @@
   font-weight: bold;
 }
 
-.button--cancel {
+.button--secondary {
   border-radius: var(--button-radius);
   border: 1px solid var(--color-white-disabled);
   background-color: transparent;
@@ -33,7 +33,7 @@
   font-weight: bold;
 }
 
-.button--share {
+.button--icon {
   border-radius: var(--button-radius);
   border: 1px solid transparent;
   background-color: var(--color-purple-basic);
@@ -46,7 +46,7 @@
   gap: 10px;
 }
 
-.button--social {
+.button--icon-text {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,9 +63,9 @@
 
 .button--primary,
 .button--primary--disabled,
-.button--cancel,
-.button--share,
-.button--social {
+.button--secondary,
+.button--icon,
+.button--icon-text {
   height: 44px; 
   min-width: 102px; 
 }

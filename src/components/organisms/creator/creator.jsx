@@ -4,9 +4,17 @@ import Image from "../../atoms/imageProfile/image";
 import ImageExampleForBio from "../../../assets/images/exampleImage.jpg";
 import Label from "../../atoms/labels/label";
 import Button from "../../atoms/button/button";
+import { useNavigate } from 'react-router-dom';
 import "./creator.css";
 
-const CreatorOrganism = ({ Creator }) => {
+const CreatorOrganism = ({ creator }) => {
+
+  const navigate = useNavigate(); 
+
+  const handleCheckoutRedirect = () => {
+    navigate('checkout');
+  };
+
   const items = ["Escucha Activa", "Buen Conversador", "Valorant"];
   return (
     <section>
@@ -16,13 +24,13 @@ const CreatorOrganism = ({ Creator }) => {
         </div>
         <div className="creators--head">
           <div className="creator--titles">
-            <Label className="Title" text="Steve, 24" />
+            <Label className="Title" text={`${creator}, 27`} />
             <Label className="SubTitleText" text="Influencer" />
           </div>
 
           <div className="creators-cta">
-            <Button text="Seguir" className="button--cancel" />
-            <Button text="Agendar Encuentro" className="button--primary" />
+            <Button text="Seguir" className="button--secondary" />
+            <Button onClick={handleCheckoutRedirect} text="Agendar Encuentro" className="button--primary" />
           </div>
         </div>
       </div>
