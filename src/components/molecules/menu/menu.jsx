@@ -3,14 +3,19 @@ import { useLocation } from "react-router-dom";
 import "./menu.css";
 import MenuButton from "../../atoms/menuButton/menuButton";
 import Image from "../../atoms/imageProfile/image";
-
 import Logo from "../../../assets/icons/menu/menuLogo.svg";
-
 import profileImage from "../../../assets/images/imageProfile.jpg";
+import useMenuStore from "./store.js";
 
 const Menu = ({ routes, profileUri }) => {
   const renderedProfileImage = profileUri || profileImage;
   const location = useLocation();
+
+  const setActivePath = useMenuStore((state) => state.setActivePath);
+
+  React.useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location.pathname, setActivePath]);
 
   return (
     <div className="menu-container">
