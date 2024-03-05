@@ -1,13 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./components/molecules/menu/menu.css";
 // css
 import "./Page.css";
 
 // components
 import Menu from "./components/molecules/menu/menu";
-
-// routes
 
 // icons
 import { ReactComponent as discover } from "../src/assets/icons/menu/home.svg";
@@ -22,31 +20,64 @@ import Discover from "./pages/discover";
 import Settings from "./pages/settings";
 import Xengler from "./pages/xengler";
 
+import Signup from "./pages/signup";
+import Login from "./pages/login";
+
 // export
 const routes = [
   { path: "/", Component: Discover, name: "Discover", icon: discover },
-  { path: "/notifications", Component: Notifications, name: "Notifications", icon: notifications },
+  {
+    path: "/notifications",
+    Component: Notifications,
+    name: "Notifications",
+    icon: notifications,
+  },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
-  // { path: "/xengler", Component: Xengler, name: "Xengler", icon: meets },
+  { path: "/signup", Component: Signup, name: "Signup" },
+  { path: "/login", Component: Login, name: "Login" },
+  { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
+  { path: "/xengler/:username/checkout", Component: Checkout, name: "Checkout" },
+  // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
+];
+const menu = [
+  { path: "/", Component: Discover, name: "Discover", icon: discover },
+  {
+    path: "/notifications",
+    Component: Notifications,
+    name: "Notifications",
+    icon: notifications,
+  },
+  { path: "/settings", Component: Settings, name: "Settings", icon: settings },
+  // { path: "/signup", Component: Signup, name: "Signup" },
+  // { path: "/login", Component: Login, name: "Login" },
+  // { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
   // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 
-const App = () => (
-  <div className="layout">
-    <div className="sidebar">
-      <Menu routes={routes} />
-    </div>
+const App = ({ isLoggedIn }) => {
+  if (!isLoggedIn) {
+    // return <Signup />;
+    // return <Login />; //si quiere ver el Login y jugar con back
+  }
 
-    <div className="content">
-      <div className="module">
-        <Routes>
-          {routes.map(({ path, Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-        </Routes>
+  return (
+    <div className="layout">
+      <div className="sidebar">
+        <Menu routes={menu} />
+      </div>
+
+      <div className="content">
+        <div className="module">
+          <Routes>
+            {routes.map(({ path, Component }) => (
+              <Route key={path} path={path} element={<Component />} />
+            ))}
+            
+          </Routes>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;

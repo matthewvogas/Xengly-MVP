@@ -1,0 +1,34 @@
+/* login css */
+.login--head {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  min-height: 356px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box .button--primary {
+  width: 100%;
+}
+
+.box .button--icon-text {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

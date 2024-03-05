@@ -1,7 +1,11 @@
 import XenglerOrganism from '../components/organisms/creator/creator'
+import { useParams } from 'react-router-dom';
 
 const Xengler = () => {
-  return <XenglerOrganism/>;
+
+  const { username } = useParams();
+
+  return <XenglerOrganism creator={username} />;
 };
 
 export default Xengler;

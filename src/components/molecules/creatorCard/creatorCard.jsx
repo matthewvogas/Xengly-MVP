@@ -1,31 +1,27 @@
 "use client";
 
-import image from "../../../assets/images/exampleImage.jpg";
 import Label from "../../atoms/labels/label";
 import Badge from "../../atoms/badge/badge";
+import { Link } from 'react-router-dom';
 import "./creatorCard.css";
 import React from "react";
 
 const CreatorCard = ({
+  imageUri,
   label,
   subTitle,
   subTitleTex,
-  imageUri,
   badges,
   age,
+  username,
 }) => {
-  const badgesExample = [
-    "hello",
-    "bro",
-    "pending",
-    "hello",
-  ];
+  const badgesExample = ["hello", "bro", "pending", "hello"];
 
   const badgesToRender = badges || badgesExample;
 
   return (
-    <div className={`creatorCard`}>
-      <img className="image" src={imageUri || image} alt="" />
+    <Link to={'/xengler/' + username || '/'} className={`creatorCard`}>
+      <img className="image" src={imageUri} alt="" />
       <div className="contentCreator">
         <div>
           <Label className="badgeLabel" text={label || "Developer"} />
@@ -46,7 +42,7 @@ const CreatorCard = ({
           <Badge key={index} className="normal" text={text} />
         ))}
       </div>
-    </div>
+    </Link>
   );
 };
 

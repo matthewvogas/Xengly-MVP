@@ -1,11 +1,16 @@
 import React from "react";
 import "./input.css";
 
-const Input = ({ className, type, placeholder, icon: Icon }) => {
+const Input = ({ className, type, placeholder, icon: Icon, onChange }) => {
   return (
     <div className={className}>
-      {Icon && <Icon className='icon--input' />}
-      <input className="textInput" type={type} placeholder={placeholder} />
+      {Icon && <Icon className="icon--input" />}
+      <input
+        className="textInput"
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
     </div>
   );
 };
