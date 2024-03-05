@@ -1,1 +1,41 @@
 /* signup css */
+
+.signup--head {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  min-height: 356px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box .button--primary {
+  width: 100%;
+}
+
+.box .button--social {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input--signup {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}

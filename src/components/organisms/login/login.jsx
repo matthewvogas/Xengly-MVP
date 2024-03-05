@@ -37,44 +37,46 @@ const LoginOrganism = () => {
   };
 
   return (
-    <section>
-      <div>
-        <Label text="Iniciar sesión" className="Title" />
-        <Label
-          text="Start selling your time with others"
-          className="TitleText"
-        />
-      </div>
-      <div>
-        <Label text="Email" className="TitleText" />
-        <Input
-          placeholder="matthew@xengly.com"
-          type="email"
-          className="input--container"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <Label text="Password" className="TitleText" />
-        <Input
-          placeholder="- - -"
-          type="password"
-          className="input--container"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <Button
-          className="button--primary"
-          text="Loguearse"
-          onClick={handleLogin}
-        />
-        <Button
-          icon={Google}
-          className="button--social"
-          text="Loguearse con Google"
-          onClick={loginWithGoogle}
-        />
+    <section className="login">
+      <div className="box">
+        <div className="login--head">
+          <Label text="Iniciar sesión" className="Title" />
+          <Label
+            text="Start selling your time with others"
+            className="TitleText"
+          />
+        </div>
+        <div>
+          <Label text="Email" className="TitleText" />
+          <Input
+            placeholder="matthew@xengly.com"
+            type="email"
+            className="input--container"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label text="Password" className="TitleText" />
+          <Input
+            placeholder="- - -"
+            type="password"
+            className="input--container"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="actions">
+          <Button
+            className="button--primary"
+            text="Loguearse"
+            onClick={handleLogin}
+          />
+          <Button
+            icon={Google}
+            className="button--social"
+            text="Loguearse con Google"
+            onClick={loginWithGoogle}
+          />
+        </div>
       </div>
     </section>
   );

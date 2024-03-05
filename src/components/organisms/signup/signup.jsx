@@ -50,53 +50,55 @@ const SignupOrganism = () => {
   };
 
   return (
-    <section>
-      <div>
-        <Label text="Registrarme" className="Title" />
-        <Label
-          text="Start selling your time with others"
-          className="TitleText"
-        />
-      </div>
-      <div>
-        <Label text="Name" className="TitleText" />
-        <Input
-          placeholder="Name"
-          type="name"
-          className="input--container"
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <Label text="Email" className="TitleText" />
-        <Input
-          placeholder="matthew@xengly.com"
-          type="email"
-          className="input--container"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <Label text="Password" className="TitleText" />
-        <Input
-          placeholder="- - -"
-          type="password"
-          className="input--container"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <Button
-          className="button--primary"
-          text="añadir"
-          onClick={handleRegister}
-        />
-        <Button
-          icon={Google}
-          className="button--social"
-          text="añadir"
-          onClick={signUpWithGoogle}
-        />
+    <section className="signup">
+      <div className="box">
+        <div className="signup--head">
+          <Label text="Registrarme" className="Title" />
+          <Label
+            text="Start selling your time with others"
+            className="TitleText"
+          />
+        </div>
+        <div className="input--signup">
+          <Label text="Name" className="TitleText" />
+          <Input
+            placeholder="Name"
+            type="name"
+            className="input--container"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="input--signup">
+          <Label text="Email" className="TitleText" />
+          <Input
+            placeholder="matthew@xengly.com"
+            type="email"
+            className="input--container"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="input--signup">
+          <Label text="Password" className="TitleText" />
+          <Input
+            placeholder="- - -"
+            type="password"
+            className="input--container"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="actions">
+          <Button
+            className="button--primary"
+            text="añadir"
+            onClick={handleRegister}
+          />
+          <Button
+            icon={Google}
+            className="button--social"
+            text="añadir"
+            onClick={signUpWithGoogle}
+          />
+        </div>
       </div>
     </section>
   );
