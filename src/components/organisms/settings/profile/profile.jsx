@@ -5,11 +5,51 @@ import Button from "../../../atoms/button/button";
 import Toggle from "../../../atoms/toggle/toggle";
 import Label from "../../../atoms/labels/label";
 import Input from "../../../atoms/input/input";
-
+import { useState } from "react";
 import React from "react";
 import "./profile.css";
 
 const ProfileOrganism = ({}) => {
+  const [schedules, setSchedules] = useState([]);
+
+  const addSchedule = (day, startTime, endTime) => {
+    const scheduleExists = schedules.some(
+      (schedule) => schedule.day === day && schedule.startTime === startTime
+    );
+
+    if (scheduleExists) {
+      alert("A schedule with the same start time already exists for this day.");
+      return;
+    }
+
+    const isOverlapping = schedules.some((schedule) => {
+      return (
+        schedule.day === day &&
+        ((startTime >= schedule.startTime && startTime < schedule.endTime) ||
+          (endTime > schedule.startTime && endTime <= schedule.endTime) ||
+          (startTime <= schedule.startTime && endTime >= schedule.endTime))
+      );
+    });
+
+    if (isOverlapping) {
+      alert("The selected time overlaps with an existing schedule.");
+      return;
+    }
+
+    const newSchedule = { day, startTime, endTime };
+    setSchedules((prevSchedules) => [...prevSchedules, newSchedule]);
+  };
+
+  const removeSchedule = (indexToRemove) => {
+    setSchedules(schedules.filter((_, index) => index !== indexToRemove));
+  };
+
+  const [isOnline, setIsOnline] = useState(false);
+
+  const handleToggle = () => {
+    setIsOnline(!isOnline);
+  };
+
   return (
     <section>
       <div className="head--profile profile">
@@ -33,7 +73,23 @@ const ProfileOrganism = ({}) => {
           />
         </div>
         <div className="schedules">
-          <SetSchedule />
+          <SetSchedule addSchedule={addSchedule} />
+        </div>
+
+        <div className="schedules-list">
+          {schedules.map((schedule, index) => (
+            <div
+              key={index}
+              className="schedule-item"
+              onClick={() => removeSchedule(index)}
+            >
+              <span className="schedule-day">Día: {schedule.day}</span>
+              <span className="schedule-time">
+                Inicio: {schedule.startTime}
+              </span>
+              <span className="schedule-time">Fin: {schedule.endTime}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -92,9 +148,9 @@ const ProfileOrganism = ({}) => {
       <div className="profile--online profile">
         <div className="online">
           <Label text="Online Meets" className="SubTitleText" />
-          <Toggle />
+          <Toggle className="" onToggle={handleToggle} isToggled={isOnline} />
         </div>
-        <div className="apps">
+        <div className={`apps ${isOnline ? "show" : "hide"}`}>
           <AppPicker title="Discord" message="Conecta con Discord" />
           <AppPicker
             title="Google Meet"

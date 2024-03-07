@@ -68,6 +68,49 @@
     width: 100%;
 }
 
-.LabelInput{
+.LabelInput {
     padding-right: 32%;
 }
+
+.schedules-list {
+    margin-top: 20px;
+}
+
+.schedule-item {
+    background-color: var(--color-white-second);
+    border: 1px solid var(--color-gray-border);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.schedule-item:hover {
+    background-color: var(--danger--bg);
+    border: 1px solid var(--danger--border);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.schedule-day {
+    font-weight: bold;
+}
+
+.schedule-time {
+    margin-left: 10px;
+}
+
+.apps {
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    height: auto;
+  }
+  
+  .apps.show {
+    opacity: 1;
+    max-height: 324px; /* Ajusta según sea necesario */
+  }
+  

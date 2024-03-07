@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./timePicker.css";
+import { useState } from "react";
 
-const TimePicker = ({ className, excludedTimes = [] }) => {
-  const [selectedTime, setSelectedTime] = useState("");
+const TimePicker = ({ className, excludedTimes = [], selectedTime, setSelectedTime }) => {
   const [showList, setShowList] = useState(false);
 
   const isTimeExcluded = (time, excludedTimes) => {

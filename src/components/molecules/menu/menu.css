@@ -7,7 +7,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    border-right: 1px solid #EAECF0;
+    border-right: 1px solid var(--color-gray-border);
+    background-color: var(--color-white-menu);
 }
 
 .cta-creator {
@@ -79,7 +80,7 @@
 
 .divider {
     height: 1px;
-    background-color: #dfdfdf;
+    background-color: var(--color-gray-border);
     margin: 20px 0;
 }
 

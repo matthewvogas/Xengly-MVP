@@ -3,9 +3,9 @@ import Label from "../../atoms/labels/label";
 import Input from "../../atoms/input/input";
 import Notification from "../../molecules/notifications/notification";
 import Image from "../../../assets/images/exampleImage.jpg";
-
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./notifications.css";
+import useNotificationsStore from "./store"; 
 
 const NotificationsOrganism = ({ notifications }) => {
   const notificationsDefault = [
@@ -14,17 +14,17 @@ const NotificationsOrganism = ({ notifications }) => {
     { title: "Evento con Xengler", message: "Mañana a las 12:00 PM tienes un evento con Carlos", icon: Image },
   ];
 
-  const notificationsToRender = notifications || notificationsDefault;
+  const { searchText, setSearchText, filterNotifications } = useNotificationsStore(); 
+  const notificationsToRender = filterNotifications(notifications || notificationsDefault, searchText);
+
+
 
   return (
     <section>
       <div className="head">
         <div>
           <Label text="Notificaciones" className="Title" />
-          <Label
-            text="Notificaciones sobre reuniones, eventos o demás"
-            className="TitleText"
-          />
+          <Label text="Notificaciones sobre reuniones, eventos o demás" className="TitleText" />
         </div>
       </div>
 
@@ -34,17 +34,13 @@ const NotificationsOrganism = ({ notifications }) => {
           type="search"
           placeholder="Buscar"
           icon={SearchIcon}
+          onChange={(e) => setSearchText(e.target.value)} 
         />
       </div>
 
       <div className="notifications--container">
         {notificationsToRender.map((notification, index) => (
-          <Notification
-            key={index}
-            title={notification.title}
-            message={notification.message}
-            icon={notification.icon}
-          />
+          <Notification key={index} title={notification.title} message={notification.message} icon={notification.icon} />
         ))}
       </div>
     </section>
