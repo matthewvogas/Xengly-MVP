@@ -3,7 +3,7 @@
 .toggle {
     width: 38px;
     height: 19px;
-    background-color: #ccc;
+    background-color: var(--toggle-bg);
     border-radius: 15px;
     position: relative;
     cursor: pointer;
@@ -13,7 +13,7 @@
   .toggle-switch {
     width: 15px;
     height: 15px;
-    background-color: white;
+    background-color: var(--toggle-circle);
     border-radius: 50%;
     position: absolute;
     top: 2px;

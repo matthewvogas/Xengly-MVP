@@ -42,7 +42,7 @@
   width: auto;
   display: flex;
   align-items: center;
-  color: #FFF;
+  color:  var(--color-white-basic);
   gap: 10px;
 }
 

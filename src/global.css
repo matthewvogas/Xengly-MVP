@@ -1,15 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Inter, sans-serif;
-}
-
 
 :root {  
+
+  --bg: #FCFCFD;
   /* for buttons or inputs backgrounds  */
   --color-purple-basic: #7f56d9;
   --color-purple-second: #523595;
@@ -17,6 +9,7 @@ body {
   --color-white-basic: #ffffff;
   --color-white-second: #f9fafb; 
   --color-white-disabled: #ececec;
+  
 
   /* for disabled buttons, divs texts */
   --color-text-disabled: #a0a0a0;
@@ -45,4 +38,28 @@ body {
 
   /* bloques divs */
   --div-radius: 8px;
+
+  /* menu */
+  --menuBotton--active: rgb(243, 243, 243);
+  --color-white-menu: #ffffff;
+
+
+  /* danger */
+  --danger--border: rgb(250, 181, 181);
+  --danger--bg: #ffe1e13e;
+
+  /* toggle */
+  --toggle-circle: white;
+  --toggle-bg: #ccc;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, sans-serif;
 }

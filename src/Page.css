@@ -1,10 +1,12 @@
+@import './global.css';
+
 .layout {
   display: flex;
   height: 100vh;
 }
 
 .layout .content{
-  background-color: #FCFCFD;
+  background-color: var(--bg);
   width: 100%;
   display: flex;
   justify-content: center;
