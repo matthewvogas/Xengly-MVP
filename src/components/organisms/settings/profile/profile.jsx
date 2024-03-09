@@ -5,12 +5,29 @@ import Button from "../../../atoms/button/button";
 import Toggle from "../../../atoms/toggle/toggle";
 import Label from "../../../atoms/labels/label";
 import Input from "../../../atoms/input/input";
-import { useState } from "react";
 import React from "react";
 import "./profile.css";
+import useProfileStore from "./store";
 
 const ProfileOrganism = ({}) => {
-  const [schedules, setSchedules] = useState([]);
+  const {
+    schedules,
+    selectedApps,
+    isOnline,
+    isMap,
+    setSchedules,
+    setSelectedApps,
+    setIsOnline,
+    setIsMap,
+  } = useProfileStore();
+
+  const handleAppPickerToggle = (appName) => {
+    if (selectedApps.includes(appName)) {
+      setSelectedApps(selectedApps.filter((app) => app !== appName));
+    } else {
+      setSelectedApps([...selectedApps, appName]);
+    }
+  };
 
   const addSchedule = (day, startTime, endTime) => {
     const scheduleExists = schedules.some(
@@ -37,17 +54,19 @@ const ProfileOrganism = ({}) => {
     }
 
     const newSchedule = { day, startTime, endTime };
-    setSchedules((prevSchedules) => [...prevSchedules, newSchedule]);
+    setSchedules([...schedules, newSchedule]);
   };
 
   const removeSchedule = (indexToRemove) => {
     setSchedules(schedules.filter((_, index) => index !== indexToRemove));
   };
 
-  const [isOnline, setIsOnline] = useState(false);
-
-  const handleToggle = () => {
+  const handleToggleOnline = () => {
     setIsOnline(!isOnline);
+  };
+
+  const handleToggleMap = () => {
+    setIsMap(!isMap);
   };
 
   return (
@@ -140,23 +159,39 @@ const ProfileOrganism = ({}) => {
       <div className="profile--location profile">
         <div className="location">
           <Label text="Location Meets" className="SubTitleText" />
-          <Toggle />
+          <Toggle onToggle={handleToggleMap} isToggled={isMap} />
         </div>
-        <div className="map">{/* mapa */}</div>
+        <div className={`maps ${isMap ? "show" : "hide"}`}>
+          <p>map</p>
+        </div>
       </div>
 
       <div className="profile--online profile">
         <div className="online">
           <Label text="Online Meets" className="SubTitleText" />
-          <Toggle className="" onToggle={handleToggle} isToggled={isOnline} />
+          <Toggle onToggle={handleToggleOnline} isToggled={isOnline} />
         </div>
         <div className={`apps ${isOnline ? "show" : "hide"}`}>
-          <AppPicker title="Discord" message="Conecta con Discord" />
-          <AppPicker
-            title="Google Meet"
-            message="Conecta por medio de Google Meet"
-          />
-          <AppPicker title="Zoom" message="Conecta con Zoom" />
+          <div className={`apps ${isOnline ? "show" : "hide"}`}>
+            <AppPicker
+              title="Discord"
+              message="Conecta con Discord"
+              onToggle={() => handleAppPickerToggle("Discord")}
+              isToggled={selectedApps.includes("Discord")}
+            />
+            <AppPicker
+              title="Google Meet"
+              message="Conecta por medio de Google Meet"
+              onToggle={() => handleAppPickerToggle("Google Meet")}
+              isToggled={selectedApps.includes("Google Meet")}
+            />
+            <AppPicker
+              title="Zoom"
+              message="Conecta con Zoom"
+              onToggle={() => handleAppPickerToggle("Zoom")}
+              isToggled={selectedApps.includes("Zoom")}
+            />
+          </div>
         </div>
       </div>
 

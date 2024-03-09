@@ -1,13 +1,14 @@
 import create from 'zustand';
 
 const useProfileStore = create((set) => ({
-  schedule: {
-    Monday: { start: '', end: '' },
-  },
-  setSchedule: (day, start, end) =>
-    set((state) => ({
-      schedule: { ...state.schedule, [day]: { start, end } },
-    })),
+  schedules: [],
+  selectedApps: [],
+  isOnline: false,
+  isMap: false,
+  setSchedules: (schedules) => set(() => ({ schedules })),
+  setSelectedApps: (selectedApps) => set(() => ({ selectedApps })),
+  setIsOnline: (isOnline) => set(() => ({ isOnline })),
+  setIsMap: (isMap) => set(() => ({ isMap })),
 }));
 
 export default useProfileStore;
