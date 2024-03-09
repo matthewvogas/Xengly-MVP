@@ -1,15 +1,67 @@
 import AppPicker from "../../../../components/molecules/appPicker/appPicker";
 import SetSchedule from "../../../molecules/setSchedule/setSchedule";
 import TextArea from "../../../atoms/textArea/textArea";
+import useUserStore from "../../../store/userStore";
 import Button from "../../../atoms/button/button";
 import Toggle from "../../../atoms/toggle/toggle";
 import Label from "../../../atoms/labels/label";
 import Input from "../../../atoms/input/input";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./profile.css";
 
-const ProfileOrganism = ({}) => {
+//firebase
+import { auth, db } from "../../../../firebase.config";
+import { updateProfile as updateFirebaseProfile } from "firebase/auth";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+
+const ProfileOrganism = () => {
+  const { profile, updateProfile } = useUserStore();
+  const [name, setName] = useState(profile?.name || "");
+  const [email, setEmail] = useState(profile?.email || "");
+  const [biography, setBiography] = useState(profile?.biography || "");
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        updateProfile({ ...profile, biography: userData.biography });
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  useEffect(() => {
+    setName(profile?.name || "");
+    setEmail(profile?.email || "");
+    setBiography(profile?.biography || "");
+  }, [profile]);
+
+  const handleSave = async () => {
+    try {
+      await updateFirebaseProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      await updateDoc(userDocRef, {
+        name,
+        email,
+        biography,
+      });
+
+      updateProfile({ name, email, biography });
+
+      alert("Perfil actualizado con éxito");
+    } catch (error) {
+      console.error("Error al actualizar el perfil:", error);
+      alert("Error al actualizar el perfil");
+    }
+  };
+
   return (
     <section>
       <div className="head--profile profile">
@@ -20,7 +72,11 @@ const ProfileOrganism = ({}) => {
 
         <div className="actions">
           <Button text="Cancel" className="button--secondary" />
-          <Button text="Save" className="button--primary" />
+          <Button
+            text="Save"
+            className="button--primary"
+            onClick={handleSave}
+          />
         </div>
       </div>
 
@@ -45,9 +101,10 @@ const ProfileOrganism = ({}) => {
           <Input
             className="input--container"
             type="name"
-            placeholder="Matthew"
+            placeholder="Name"
+            value={profile?.name}
+            onChange={(e) => setName(e.target.value)}
           />
-          <Input className="input--container" type="text" placeholder="Vogas" />
         </div>
       </div>
 
@@ -60,6 +117,8 @@ const ProfileOrganism = ({}) => {
             className="input--container"
             type="email"
             placeholder="matthew@xengly.com"
+            value={profile.email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>
@@ -76,7 +135,14 @@ const ProfileOrganism = ({}) => {
           <Label text="Biography" className="SubTitleText" />
         </div>
         <div className="bio">
-          <TextArea className="textArea" placeholder="" maxLength={275} />
+          <TextArea
+            className="textArea"
+            placeholder="Describe yourself"
+            maxLength={275}
+            value={biography}
+            onChange={(e) => setBiography(e.target.value)}
+          />
+
           <Label text="275 characters left" className="SubTitleText" />
         </div>
       </div>

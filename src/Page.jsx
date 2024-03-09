@@ -36,7 +36,11 @@ const routes = [
   { path: "/signup", Component: Signup, name: "Signup" },
   { path: "/login", Component: Login, name: "Login" },
   { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
-  { path: "/xengler/:username/checkout", Component: Checkout, name: "Checkout" },
+  {
+    path: "/xengler/:username/checkout",
+    Component: Checkout,
+    name: "Checkout",
+  },
   // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 const menu = [
@@ -55,11 +59,6 @@ const menu = [
 ];
 
 const App = ({ isLoggedIn }) => {
-  if (!isLoggedIn) {
-    // return <Signup />;
-    // return <Login />; //si quiere ver el Login y jugar con back
-  }
-
   return (
     <div className="layout">
       <div className="sidebar">
@@ -72,7 +71,6 @@ const App = ({ isLoggedIn }) => {
             {routes.map(({ path, Component }) => (
               <Route key={path} path={path} element={<Component />} />
             ))}
-            
           </Routes>
         </div>
       </div>
