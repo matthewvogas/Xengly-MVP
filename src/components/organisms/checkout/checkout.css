@@ -17,8 +17,6 @@
 .head--checkout {
     display: flex;
     margin-top: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--color-gray-border);
 }
 
 .checkout--pay {
@@ -43,19 +41,22 @@
 .date {
     display: flex;
     gap: 12px;
-    margin-bottom: 12px;
+    width: 100%;
 }
 
 .profile--location .location--date {
+    display: flex;
+    align-items: center;
     width: 100%;
+    justify-content: space-between;
 }
 
 .profile--checkout {
     display: flex;
     flex-direction: column;
 }
-.profile--checkout .actions{
-    margin-top: 6px;
+
+.profile--checkout .actions {
     display: flex;
     flex-direction: column;
 }
@@ -74,4 +75,64 @@
 
 .info--pay {
     margin-bottom: 34px;
+}
+
+.profile-bill {
+    border-top: 1px solid var(--color-gray-border);
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    border-bottom: 1px solid var(--color-gray-border);
+}
+
+.location {
+    align-items: center;
+}
+
+.location .SubTitleText{
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.app {
+    margin-top: 12px;
+}
+
+.maps--checkout {
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+    height: auto;
+}
+
+.maps--checkout.show {
+    opacity: 1;
+}
+
+.maps--checkout.hide {
+    opacity: 0;
+    max-height: 0;
+}
+
+.maps--checkout--options {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+    height: auto;
+}
+
+.maps--checkout--options.show--options {
+    opacity: 1;
+   min-height: 400px;
+}
+
+.maps--checkout--options.hide--options {
+    opacity: 0;
+    max-height: 0;
+}
+
+.maps--checkout--options .SubTitleText {
+    margin-bottom: 12px;
 }

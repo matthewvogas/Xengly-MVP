@@ -107,10 +107,23 @@
     max-height: 0;
     overflow: hidden;
     height: auto;
-  }
-  
-  .apps.show {
+}
+
+.apps.show {
     opacity: 1;
-    max-height: 324px; /* Ajusta según sea necesario */
-  }
-  
+    max-height: 324px;
+}
+
+
+.maps {
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    height: auto;
+}
+
+.maps.show {
+    opacity: 1;
+    max-height: 324px;
+}

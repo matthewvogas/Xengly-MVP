@@ -29,7 +29,6 @@ const CreatorOrganism = ({ creator }) => {
           </div>
 
           <div className="creators-cta">
-            <Button text="Seguir" className="button--secondary" />
             <Button onClick={handleCheckoutRedirect} text="Agendar Encuentro" className="button--primary" />
           </div>
         </div>

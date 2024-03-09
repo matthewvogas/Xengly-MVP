@@ -5,26 +5,33 @@ import Notification from "../../molecules/notifications/notification";
 import Image from "../../../assets/images/exampleImage.jpg";
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./notifications.css";
-import useNotificationsStore from "./store"; 
+import useNotificationsStore from "./store";
+import { useEffect } from "react";
 
-const NotificationsOrganism = ({ notifications }) => {
-  const notificationsDefault = [
-    { title: "Evento con Xengler", message: "Mañana a las 10:00 AM tienes un evento con Gina", icon: Image },
-    { title: "Terminar de configurar el perfil personal", message: "Aún te falta llenar unas cosas en tu perfil personal" },
-    { title: "Evento con Xengler", message: "Mañana a las 12:00 PM tienes un evento con Carlos", icon: Image },
-  ];
+const NotificationsOrganism = ({ notifications = [] }) => {
+  const {
+    searchText,
+    setSearchText,
+    filterNotifications,
+    removeNotification,
+    filteredNotifications,
+  } = useNotificationsStore();
+  const notificationsToRender =
+    filteredNotifications.length > 0 ? filteredNotifications : notifications;
 
-  const { searchText, setSearchText, filterNotifications } = useNotificationsStore(); 
-  const notificationsToRender = filterNotifications(notifications || notificationsDefault, searchText);
-
-
+  useEffect(() => {
+    filterNotifications(searchText);
+  }, [searchText, filterNotifications]);
 
   return (
     <section>
       <div className="head">
         <div>
           <Label text="Notificaciones" className="Title" />
-          <Label text="Notificaciones sobre reuniones, eventos o demás" className="TitleText" />
+          <Label
+            text="Notificaciones sobre reuniones, eventos o demás"
+            className="TitleText"
+          />
         </div>
       </div>
 
@@ -34,13 +41,19 @@ const NotificationsOrganism = ({ notifications }) => {
           type="search"
           placeholder="Buscar"
           icon={SearchIcon}
-          onChange={(e) => setSearchText(e.target.value)} 
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
 
       <div className="notifications--container">
         {notificationsToRender.map((notification, index) => (
-          <Notification key={index} title={notification.title} message={notification.message} icon={notification.icon} />
+          <Notification
+            key={index}
+            title={notification.title}
+            message={notification.message}
+            icon={notification.icon}
+            onDelete={() => removeNotification(notification.id)}
+          />
         ))}
       </div>
     </section>

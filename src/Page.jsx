@@ -72,7 +72,6 @@ const App = ({ isLoggedIn }) => {
             {routes.map(({ path, Component }) => (
               <Route key={path} path={path} element={<Component />} />
             ))}
-            
           </Routes>
         </div>
       </div>
