@@ -3,18 +3,25 @@ import Label from "../../atoms/labels/label";
 import Input from "../../atoms/input/input";
 import Notification from "../../molecules/notifications/notification";
 import Image from "../../../assets/images/exampleImage.jpg";
-
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./notifications.css";
+import useNotificationsStore from "./store";
+import { useEffect } from "react";
 
-const NotificationsOrganism = ({ notifications }) => {
-  const notificationsDefault = [
-    { title: "Evento con Xengler", message: "Mañana a las 10:00 AM tienes un evento con Gina", icon: Image },
-    { title: "Terminar de configurar el perfil personal", message: "Aún te falta llenar unas cosas en tu perfil personal" },
-    { title: "Evento con Xengler", message: "Mañana a las 12:00 PM tienes un evento con Carlos", icon: Image },
-  ];
+const NotificationsOrganism = ({ notifications = [] }) => {
+  const {
+    searchText,
+    setSearchText,
+    filterNotifications,
+    removeNotification,
+    filteredNotifications,
+  } = useNotificationsStore();
+  const notificationsToRender =
+    filteredNotifications.length > 0 ? filteredNotifications : notifications;
 
-  const notificationsToRender = notifications || notificationsDefault;
+  useEffect(() => {
+    filterNotifications(searchText);
+  }, [searchText, filterNotifications]);
 
   return (
     <section>
@@ -34,6 +41,7 @@ const NotificationsOrganism = ({ notifications }) => {
           type="search"
           placeholder="Buscar"
           icon={SearchIcon}
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
 
@@ -44,6 +52,7 @@ const NotificationsOrganism = ({ notifications }) => {
             title={notification.title}
             message={notification.message}
             icon={notification.icon}
+            onDelete={() => removeNotification(notification.id)}
           />
         ))}
       </div>

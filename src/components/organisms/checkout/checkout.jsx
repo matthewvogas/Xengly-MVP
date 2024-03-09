@@ -9,8 +9,25 @@ import TimePicker from "../../../components/atoms/timePicker/timePicker";
 import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPicker";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
+import { useState } from "react";
+import useCheckoutStore from "./store";
 
 const CheckoutOrganism = ({ username }) => {
+
+  const { isMap, selectedApp, setIsMap, setSelectedApp } = useCheckoutStore();
+
+  const handleToggleMap = () => {
+    setIsMap(!isMap);
+  };
+
+  const handleAppPickerToggle = (appName) => {
+    if (selectedApp === appName) {
+      setSelectedApp(null);
+    } else {
+      setSelectedApp(appName);
+    }
+  };
+
   return (
     <section>
       <section>
@@ -26,41 +43,66 @@ const CheckoutOrganism = ({ username }) => {
           </div>
         </div>
 
-        <div className="profile--location profile">
+        <div className="profile--location profile-bill">
           <div className="location">
-            <Label text="Es el evento online?" className="SubTitleText" />
-            <Toggle />
+            <Label text="¿Es el evento online?" className="SubTitleText" />
+            <Toggle onToggle={handleToggleMap} isToggled={isMap} />
           </div>
-          <div className="location--date">
+
+          <div
+            className={`location--date maps--checkout ${
+              isMap ? "hide" : "show"
+            }`}
+          >
             <div className="date">
               <CalendarPicker />
               <TimePicker />
             </div>
-
-            <div className="location">{/* mapa */}</div>
           </div>
-          <div className="map">{/* mapa */}</div>
         </div>
 
-        <div className="profile--online profile">
-          <div className="online">
-            <Label
-              text="Selecciona el medio deseado"
-              className="SubTitleText"
-            />
-          </div>
-          <div className="apps">
-            <div className="date">
-              <CalendarPicker />
-              <TimePicker />
-            </div>
-            <AppPicker title="Discord" message="Conecta con Discord" />
-            <AppPicker
-              title="Google Meet"
-              message="Conecta por medio de Google Meet"
-            />
-            <AppPicker title="Zoom" message="Conecta con Zoom" />
-          </div>
+        <div
+          className={`maps--checkout--options ${
+            isMap ? "show--options" : "hide--options"
+          }`}
+        >
+          <Label text="Selecciona el medio deseado" className="SubTitleText" />
+          <AppPicker
+            title="Discord"
+            message="Conecta con Discord"
+            onToggle={() => handleAppPickerToggle("Discord")}
+            isToggled={selectedApp === "Discord"}
+          />
+          <AppPicker
+            title="Google Meet"
+            message="Conecta por medio de Google Meet"
+            onToggle={() => handleAppPickerToggle("Google Meet")}
+            isToggled={selectedApp === "Google Meet"}
+          />
+          <AppPicker
+            title="Zoom"
+            message="Conecta con Zoom"
+            onToggle={() => handleAppPickerToggle("Zoom")}
+            isToggled={selectedApp === "Zoom"}
+          />
+          <AppPicker
+            title="Zoom"
+            message="Conecta con Zoom"
+            onToggle={() => handleAppPickerToggle("1")}
+            isToggled={selectedApp === "1"}
+          />
+          <AppPicker
+            title="Zoom"
+            message="Conecta con Zoom"
+            onToggle={() => handleAppPickerToggle("2")}
+            isToggled={selectedApp === "2"}
+          />
+          <AppPicker
+            title="Zoom"
+            message="Conecta con Zoom"
+            onToggle={() => handleAppPickerToggle("3")}
+            isToggled={selectedApp === "3"}
+          />
         </div>
 
         <div className="pay--checkout">
@@ -75,7 +117,7 @@ const CheckoutOrganism = ({ username }) => {
           </div>
         </div>
 
-        <div className="profile--checkout profile">
+        <div className="profile--checkout">
           <div className="titles">
             <Label text="Card Number" className="SubTitleText" />
           </div>
@@ -119,7 +161,10 @@ const CheckoutOrganism = ({ username }) => {
         </div>
 
         <div className="info--pay">
-          <Label text="Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy." className="SubTitleText" />
+          <Label
+            text="Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy."
+            className="SubTitleText"
+          />
         </div>
       </section>
     </section>

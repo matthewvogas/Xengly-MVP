@@ -10,9 +10,14 @@
   color: var(--color-black-basic);
   display: flex;
   align-items: center;
-  box-shadow: var(--shadow-inputs);
   padding-right: 8px;
   min-height: 42px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input--container:focus-within {
+  border-color: var(--color-gray-basic);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.057); /* Borde externo sutil */
 }
 
 input {
@@ -20,10 +25,10 @@ input {
   outline: none;
   width: 100%;
   font-size: 16px;
+  background-color: transparent;
 }
 
 .textInput {
-  background-color: transparent;
   padding-left: 8px;
 }
 

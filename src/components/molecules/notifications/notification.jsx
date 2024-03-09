@@ -3,7 +3,7 @@ import "./notification.css";
 import Image from "../../../assets/images/exampleImage.jpg";
 import ex from "../../../assets/icons/X.svg";
 
-const Notification = ({ icon, message, title }) => {
+const Notification = ({ icon, message, title, onDelete }) => {
   const renderedImage = icon || Image;
 
   return (
@@ -27,6 +27,7 @@ const Notification = ({ icon, message, title }) => {
         src={ex}
         alt="Notification Icon"
         className="trash"
+        onClick={onDelete}
       />
     </div>
   );

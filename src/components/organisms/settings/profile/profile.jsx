@@ -8,6 +8,7 @@ import Label from "../../../atoms/labels/label";
 import Input from "../../../atoms/input/input";
 import React, { useEffect, useState } from "react";
 import "./profile.css";
+import useProfileStore from "./store";
 
 //firebase
 import { auth, db } from "../../../../firebase.config";
@@ -62,6 +63,65 @@ const ProfileOrganism = () => {
     }
   };
 
+  const {
+    schedules,
+    selectedApps,
+    isOnline,
+    isMap,
+    setSchedules,
+    setSelectedApps,
+    setIsOnline,
+    setIsMap,
+  } = useProfileStore();
+
+  const handleAppPickerToggle = (appName) => {
+    if (selectedApps.includes(appName)) {
+      setSelectedApps(selectedApps.filter((app) => app !== appName));
+    } else {
+      setSelectedApps([...selectedApps, appName]);
+    }
+  };
+
+  const addSchedule = (day, startTime, endTime) => {
+    const scheduleExists = schedules.some(
+      (schedule) => schedule.day === day && schedule.startTime === startTime
+    );
+
+    if (scheduleExists) {
+      alert("A schedule with the same start time already exists for this day.");
+      return;
+    }
+
+    const isOverlapping = schedules.some((schedule) => {
+      return (
+        schedule.day === day &&
+        ((startTime >= schedule.startTime && startTime < schedule.endTime) ||
+          (endTime > schedule.startTime && endTime <= schedule.endTime) ||
+          (startTime <= schedule.startTime && endTime >= schedule.endTime))
+      );
+    });
+
+    if (isOverlapping) {
+      alert("The selected time overlaps with an existing schedule.");
+      return;
+    }
+
+    const newSchedule = { day, startTime, endTime };
+    setSchedules([...schedules, newSchedule]);
+  };
+
+  const removeSchedule = (indexToRemove) => {
+    setSchedules(schedules.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleToggleOnline = () => {
+    setIsOnline(!isOnline);
+  };
+
+  const handleToggleMap = () => {
+    setIsMap(!isMap);
+  };
+
   return (
     <section>
       <div className="head--profile profile">
@@ -89,7 +149,23 @@ const ProfileOrganism = () => {
           />
         </div>
         <div className="schedules">
-          <SetSchedule />
+          <SetSchedule addSchedule={addSchedule} />
+        </div>
+
+        <div className="schedules-list">
+          {schedules.map((schedule, index) => (
+            <div
+              key={index}
+              className="schedule-item"
+              onClick={() => removeSchedule(index)}
+            >
+              <span className="schedule-day">Día: {schedule.day}</span>
+              <span className="schedule-time">
+                Inicio: {schedule.startTime}
+              </span>
+              <span className="schedule-time">Fin: {schedule.endTime}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -150,23 +226,39 @@ const ProfileOrganism = () => {
       <div className="profile--location profile">
         <div className="location">
           <Label text="Location Meets" className="SubTitleText" />
-          <Toggle />
+          <Toggle onToggle={handleToggleMap} isToggled={isMap} />
         </div>
-        <div className="map">{/* mapa */}</div>
+        <div className={`maps ${isMap ? "show" : "hide"}`}>
+          <p>map</p>
+        </div>
       </div>
 
       <div className="profile--online profile">
         <div className="online">
           <Label text="Online Meets" className="SubTitleText" />
-          <Toggle />
+          <Toggle onToggle={handleToggleOnline} isToggled={isOnline} />
         </div>
-        <div className="apps">
-          <AppPicker title="Discord" message="Conecta con Discord" />
-          <AppPicker
-            title="Google Meet"
-            message="Conecta por medio de Google Meet"
-          />
-          <AppPicker title="Zoom" message="Conecta con Zoom" />
+        <div className={`apps ${isOnline ? "show" : "hide"}`}>
+          <div className={`apps ${isOnline ? "show" : "hide"}`}>
+            <AppPicker
+              title="Discord"
+              message="Conecta con Discord"
+              onToggle={() => handleAppPickerToggle("Discord")}
+              isToggled={selectedApps.includes("Discord")}
+            />
+            <AppPicker
+              title="Google Meet"
+              message="Conecta por medio de Google Meet"
+              onToggle={() => handleAppPickerToggle("Google Meet")}
+              isToggled={selectedApps.includes("Google Meet")}
+            />
+            <AppPicker
+              title="Zoom"
+              message="Conecta con Zoom"
+              onToggle={() => handleAppPickerToggle("Zoom")}
+              isToggled={selectedApps.includes("Zoom")}
+            />
+          </div>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ import Toggle from "../../atoms/toggle/toggle";
 import React from "react";
 import "./appPicker.css";
 
-const AppPicker = ({ icon, message, title }) => {
+const AppPicker = ({ icon, message, title, onToggle, isToggled }) => {
   const renderedImage = icon || Image;
 
   return (
@@ -24,7 +24,7 @@ const AppPicker = ({ icon, message, title }) => {
         </div>
       </div>
       <div>
-        <Toggle />
+        <Toggle onToggle={onToggle} isToggled={isToggled} />
       </div>
     </div>
   );

@@ -7,6 +7,11 @@ const useBadgeStore = create((set) => ({
     { text: "Deportistas", isActive: false },
     { text: "Músicos", isActive: false },
   ],
+  searchQuery: "",
+  setSearchQuery: (query) =>
+    set(() => ({
+      searchQuery: query,
+    })),
   toggleBadge: (badgeText) =>
     set((state) => ({
       badges: state.badges.map((badge) =>
