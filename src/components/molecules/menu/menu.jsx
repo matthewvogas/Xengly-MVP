@@ -6,8 +6,10 @@ import Image from "../../atoms/imageProfile/image";
 import Logo from "../../../assets/icons/menu/menuLogo.svg";
 import profileImage from "../../../assets/images/imageProfile.jpg";
 import useMenuStore from "./store.js";
+import useUserStore from "../../store/userStore.js";
 
 const Menu = ({ routes, profileUri }) => {
+  const { profile } = useUserStore();
   const renderedProfileImage = profileUri || profileImage;
   const location = useLocation();
 
@@ -54,7 +56,7 @@ const Menu = ({ routes, profileUri }) => {
             profileImage={renderedProfileImage}
           />
           <div className="profile-info">
-            <p>Olivia Rhye</p>
+            <p>{profile.name || "not user found"}</p>
             <span>Log Out</span>
           </div>
         </div>

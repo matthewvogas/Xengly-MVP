@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Label from "../../atoms/labels/label";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
 import { ReactComponent as Google } from "../../../assets/icons/SociaIcon.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../../firebase.config";
+import useUserStore from "../../store/userStore";
 
 import "./login.css";
 
 const LoginOrganism = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { setAuth, setProfile } = useUserStore();
 
   const handleLogin = async () => {
     try {
@@ -21,6 +25,15 @@ const LoginOrganism = () => {
       );
       const user = userCredential.user;
       console.log("Usuario logueado:", user);
+
+      setAuth(true);
+      setProfile({
+        name: user.displayName || "",
+        email: user.email,
+        imageUrl: user.photoURL || "",
+      });
+
+      navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -31,6 +44,15 @@ const LoginOrganism = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       console.log("Usuario logueado con Google:", user);
+
+      setAuth(true);
+      setProfile({
+        name: user.displayName || "",
+        email: user.email,
+        imageUrl: user.photoURL || "",
+      });
+
+      navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error);
     }

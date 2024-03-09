@@ -1,6 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import Creator from "../../molecules/creatorCard/creatorCard";
 import image from "../../../assets/images/exampleImage.jpg";
+import useUserStore from "../../store/userStore";
 import Button from "../../atoms/button/button";
 import Label from "../../atoms/labels/label";
 import Search from "../../atoms/input/input";

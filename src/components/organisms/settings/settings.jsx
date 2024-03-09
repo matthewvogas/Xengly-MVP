@@ -7,7 +7,6 @@ import ProfileOrganism from "./profile/profile";
 import BillingOrganism from "./billing/billing";
 
 const SettingsOrganism = ({}) => {
-
   const tabs = [
     { title: "Profile", content: () => <ProfileOrganism /> },
     { title: "Billing", content: () => <BillingOrganism /> },
@@ -22,7 +21,6 @@ const SettingsOrganism = ({}) => {
       </div>
 
       <Tabs tabs={tabs} />
-
     </section>
   );
 };
