@@ -6,17 +6,8 @@ import Button from "../../atoms/button/button";
 import Label from "../../atoms/labels/label";
 import Input from "../../atoms/input/input";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./signup.css";
-
-const signUpWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    await saveUserData(user);
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 const saveUserData = async (user, additionalData = {}) => {
   const userRef = doc(db, "users", user.uid);
@@ -33,6 +24,18 @@ const SignupOrganism = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const signUpWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      await saveUserData(user);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -44,6 +47,7 @@ const SignupOrganism = () => {
       );
       const user = userCredential.user;
       await saveUserData(user, { name: name });
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }

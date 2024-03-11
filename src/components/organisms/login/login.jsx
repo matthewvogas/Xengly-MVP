@@ -7,6 +7,8 @@ import { ReactComponent as Google } from "../../../assets/icons/SociaIcon.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../../firebase.config";
 import useUserStore from "../../store/userStore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase.config";
 
 import "./login.css";
 
@@ -26,12 +28,25 @@ const LoginOrganism = () => {
       const user = userCredential.user;
       console.log("Usuario logueado:", user);
 
+      // Actualizar el estado de autenticación y perfil
       setAuth(true);
       setProfile({
         name: user.displayName || "",
         email: user.email,
         imageUrl: user.photoURL || "",
       });
+
+      // Guardar o actualizar los datos del usuario en Firestore
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+      if (!userDocSnap.exists()) {
+        // Si el documento no existe, crea uno nuevo
+        await setDoc(userDocRef, {
+          name: user.displayName || "",
+          email: user.email,
+          imageUrl: user.photoURL || "",
+        });
+      }
 
       navigate("/");
     } catch (error) {

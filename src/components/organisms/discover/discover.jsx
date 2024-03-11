@@ -5,21 +5,26 @@ import useUserStore from "../../store/userStore";
 import Button from "../../atoms/button/button";
 import Label from "../../atoms/labels/label";
 import Search from "../../atoms/input/input";
+import Menu from "../../../components/molecules/menu/menu";
 import Badge from "../../atoms/badge/badge";
 import useBadgeStore from "./store";
 import React from "react";
 import "./discover.css";
 
 const NotificationsOrganism = ({ creators }) => {
-  const { badges, toggleBadge, searchQuery, setSearchQuery } = useBadgeStore((state) => ({
-    badges: state.badges,
-    toggleBadge: state.toggleBadge,
-    searchQuery: state.searchQuery,
-    setSearchQuery: state.setSearchQuery,
-  }));
+  const { badges, toggleBadge, searchQuery, setSearchQuery } = useBadgeStore(
+    (state) => ({
+      badges: state.badges,
+      toggleBadge: state.toggleBadge,
+      searchQuery: state.searchQuery,
+      setSearchQuery: state.setSearchQuery,
+    })
+  );
 
   const sortedBadges = [...badges].sort((a, b) => (b.isActive ? 1 : -1));
-  const activeBadges = badges.filter((badge) => badge.isActive).map((badge) => badge.text);
+  const activeBadges = badges
+    .filter((badge) => badge.isActive)
+    .map((badge) => badge.text);
 
   const creatorsDefault = [
     {
@@ -48,19 +53,25 @@ const NotificationsOrganism = ({ creators }) => {
     },
   ];
 
-  const filteredCreators = creatorsDefault.filter((creator) =>
-    (creator.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      creator.subTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      creator.subTitleText.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      creator.age.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      creator.username.toLowerCase().includes(searchQuery.toLowerCase())) &&
-    (activeBadges.length === 0 || creator.badges.some((badge) => activeBadges.includes(badge)))
+  const filteredCreators = creatorsDefault.filter(
+    (creator) =>
+      (creator.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        creator.subTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        creator.subTitleText
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        creator.age.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        creator.username.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (activeBadges.length === 0 ||
+        creator.badges.some((badge) => activeBadges.includes(badge)))
   );
 
   const creatorsToRender = creators || filteredCreators;
+  const formUrl = "https://forms.gle/7DXSD7LUdnFJPhAZ7";
 
   return (
     <section>
+      <div className="sidebar"></div>
       <div className="head">
         <div>
           <Label text="Descubre" className="Title" />
@@ -69,7 +80,9 @@ const NotificationsOrganism = ({ creators }) => {
             className="TitleText"
           />
         </div>
-        <Button text="Ser creador" className="button--primary" />
+        <a href={formUrl} target="_blank" rel="noopener noreferrer">
+          <Button text="Ser creador" className="button--primary" />
+        </a>
       </div>
 
       <div className="badges--filter">

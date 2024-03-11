@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./menu.css";
 import MenuButton from "../../atoms/menuButton/menuButton";
 import Image from "../../atoms/imageProfile/image";
@@ -9,15 +9,23 @@ import useMenuStore from "./store.js";
 import useUserStore from "../../store/userStore.js";
 
 const Menu = ({ routes, profileUri }) => {
-  const { profile } = useUserStore();
+  const { profile, isAuthenticated, logout: userLogout } = useUserStore();
   const renderedProfileImage = profileUri || profileImage;
   const location = useLocation();
-
+  const navigate = useNavigate();
   const setActivePath = useMenuStore((state) => state.setActivePath);
 
   React.useEffect(() => {
     setActivePath(location.pathname);
   }, [location.pathname, setActivePath]);
+
+  const handleAuthAction = (event) => {
+    event.preventDefault();
+    if (isAuthenticated) {
+      userLogout();
+    }
+    navigate(isAuthenticated ? "/login" : "/login");
+  };
 
   return (
     <div className="menu-container">
@@ -56,8 +64,12 @@ const Menu = ({ routes, profileUri }) => {
             profileImage={renderedProfileImage}
           />
           <div className="profile-info">
-            <p>{profile.name || "not user found"}</p>
-            <span>Log Out</span>
+            <p>{isAuthenticated ? profile.name : "not user found"}</p>
+            <span>
+              <a href="" onClick={handleAuthAction}>
+                {isAuthenticated ? "Log Out" : "Login"}
+              </a>
+            </span>
           </div>
         </div>
       </div>
