@@ -26,7 +26,6 @@ const LoginOrganism = () => {
         password
       );
       const user = userCredential.user;
-      console.log("Usuario logueado:", user);
 
       // Actualizar el estado de autenticación y perfil
       setAuth(true);
@@ -58,7 +57,6 @@ const LoginOrganism = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      console.log("Usuario logueado con Google:", user);
 
       setAuth(true);
       setProfile({
