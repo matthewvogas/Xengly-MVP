@@ -23,19 +23,12 @@ const ProfileOrganism = () => {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      if (auth.currentUser) {
-        const userDocRef = doc(db, "users", auth.currentUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      const userDocSnap = await getDoc(userDocRef);
 
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-          updateProfile({
-            name: userData.name,
-            email: userData.email,
-            imageUrl: userData.imageUrl,
-            biography: userData.biography,
-          });
-        }
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        updateProfile({ ...profile, biography: userData.biography });
       }
     };
 
@@ -185,7 +178,7 @@ const ProfileOrganism = () => {
             className="input--container"
             type="name"
             placeholder="Name"
-            value={profile?.name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -200,7 +193,7 @@ const ProfileOrganism = () => {
             className="input--container"
             type="email"
             placeholder="matthew@xengly.com"
-            value={profile.email}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
