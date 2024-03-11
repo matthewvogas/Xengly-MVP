@@ -1,29 +1,22 @@
-import { Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import "./components/molecules/menu/menu.css";
-// css
 import "./Page.css";
-
-// components
 import Menu from "./components/molecules/menu/menu";
-
-// icons
 import { ReactComponent as discover } from "../src/assets/icons/menu/home.svg";
 import { ReactComponent as notifications } from "../src/assets/icons/menu/bell.svg";
-import { ReactComponent as meets } from "../src/assets/icons/menu/coffee.svg";
-import { ReactComponent as messages } from "../src/assets/icons/menu/message-square.svg";
 import { ReactComponent as settings } from "../src/assets/icons/menu/user.svg";
-
 import Notifications from "./pages/notifications";
 import Checkout from "./pages/checkout";
 import Discover from "./pages/discover";
 import Settings from "./pages/settings";
 import Xengler from "./pages/xengler";
-
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import useUserStore from "./components/store/userStore";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase.config";
 
-// export
 const routes = [
   { path: "/", Component: Discover, name: "Discover", icon: discover },
   {
@@ -41,7 +34,6 @@ const routes = [
     Component: Checkout,
     name: "Checkout",
   },
-  // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 const menu = [
   { path: "/", Component: Discover, name: "Discover", icon: discover },
@@ -52,19 +44,45 @@ const menu = [
     icon: notifications,
   },
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
-  // { path: "/signup", Component: Signup, name: "Signup" },
-  // { path: "/login", Component: Login, name: "Login" },
-  // { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
-  // { path: "/checkout", Component: Checkout, name: "Checkout", icon: messages },
 ];
 
-const App = ({ isLoggedIn }) => {
+const App = () => {
+  const { setAuth, setProfile } = useUserStore();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuth(true);
+        setProfile({
+          name: user.displayName || "",
+          email: user.email,
+          imageUrl: user.photoURL || "",
+        });
+      } else {
+        setAuth(false);
+        setProfile({
+          name: "",
+          email: "",
+          imageUrl: "",
+        });
+        if (location.pathname !== "/") {
+          navigate("/login");
+        }
+      }
+    });
+
+    return () => unsubscribe();
+  }, [setAuth, setProfile, navigate, location.pathname]);
+
   return (
     <div className="layout">
-      <div className="sidebar">
-        <Menu routes={menu} />
-      </div>
-
+      {location.pathname !== "/login" && location.pathname !== "/signup" && (
+        <div className="sidebar">
+          <Menu routes={menu} />
+        </div>
+      )}
       <div className="content">
         <div className="module">
           <Routes>
