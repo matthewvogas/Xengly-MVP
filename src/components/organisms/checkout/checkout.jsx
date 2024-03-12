@@ -1,19 +1,18 @@
-import React from "react";
-import ImageExample from "../../../assets/images/imageProfile.jpg";
-import Image from "../../atoms/imageProfile/image";
-import Label from "../../atoms/labels/label";
-import "./checkout.css";
-import Toggle from "../../atoms/toggle/toggle";
+import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPicker";
 import AppPicker from "../../../components/molecules/appPicker/appPicker";
 import TimePicker from "../../../components/atoms/timePicker/timePicker";
-import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPicker";
-import Input from "../../atoms/input/input";
+import ImageExample from "../../../assets/images/imageProfile.jpg";
+import Image from "../../atoms/imageProfile/image";
+import Toggle from "../../atoms/toggle/toggle";
 import Button from "../../atoms/button/button";
-import { useState } from "react";
+import Label from "../../atoms/labels/label";
+import Input from "../../atoms/input/input";
 import useCheckoutStore from "./store";
+import { useState } from "react";
+import React from "react";
+import "./checkout.css";
 
 const CheckoutOrganism = ({ username }) => {
-
   const { isMap, selectedApp, setIsMap, setSelectedApp } = useCheckoutStore();
 
   const handleToggleMap = () => {
@@ -48,16 +47,13 @@ const CheckoutOrganism = ({ username }) => {
             <Label text="¿Es el evento online?" className="SubTitleText" />
             <Toggle onToggle={handleToggleMap} isToggled={isMap} />
           </div>
-
-          <div
-            className={`location--date maps--checkout ${
-              isMap ? "hide" : "show"
-            }`}
-          >
-            <div className="date">
-              <CalendarPicker />
-              <TimePicker />
-            </div>
+        </div>
+        <div
+          className={`location--date maps--checkout ${isMap ? "hide" : "show"}`}
+        >
+          <div className="date">
+            <CalendarPicker />
+            <TimePicker />
           </div>
         </div>
 

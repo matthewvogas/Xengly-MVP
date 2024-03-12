@@ -1,15 +1,20 @@
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import Creator from "../../molecules/creatorCard/creatorCard";
-import image from "../../../assets/images/exampleImage.jpg";
+import Menu from "../../../components/molecules/menu/menu";
 import useUserStore from "../../store/userStore";
 import Button from "../../atoms/button/button";
 import Label from "../../atoms/labels/label";
 import Search from "../../atoms/input/input";
-import Menu from "../../../components/molecules/menu/menu";
 import Badge from "../../atoms/badge/badge";
 import useBadgeStore from "./store";
 import React from "react";
 import "./discover.css";
+
+import image1 from "../../../assets/images/creatorsDummy/img1.webp";
+import image2 from "../../../assets/images/creatorsDummy/img2.webp";
+import image3 from "../../../assets/images/creatorsDummy/img3.webp";
+import image4 from "../../../assets/images/creatorsDummy/img4.webp";
+import image5 from "../../../assets/images/creatorsDummy/img5.webp";
 
 const NotificationsOrganism = ({ creators }) => {
   const { badges, toggleBadge, searchQuery, setSearchQuery } = useBadgeStore(
@@ -19,37 +24,58 @@ const NotificationsOrganism = ({ creators }) => {
       searchQuery: state.searchQuery,
       setSearchQuery: state.setSearchQuery,
     })
-  );
-
-  const sortedBadges = [...badges].sort((a, b) => (b.isActive ? 1 : -1));
-  const activeBadges = badges
+    );
+    
+    const sortedBadges = [...badges].sort((a, b) => (b.isActive ? 1 : -1));
+    const activeBadges = badges
     .filter((badge) => badge.isActive)
     .map((badge) => badge.text);
-
+    
   const creatorsDefault = [
     {
-      label: "Nombre del Creador 1",
-      subTitle: "Matthew",
-      subTitleText: "Descripción breve 1",
-      badges: ["Músicos", "Badge 2"],
-      age: "Edad 1",
+      label: "Influencer",
+      subTitle: "Pedro",
+      subTitleText: " ¡Hola! Soy Pedro, un apasionado de los juegos online con más de 1 millón de seguidores. Juguemos juntos Fortnite!",
+      badges: ["influencer", "1M", "juegos online", "gamer"],
+      age: "22",
       username: "burgerqueen",
+      image: image1
     },
     {
-      label: "Nombre del Creador 2",
-      subTitle: "Montero",
-      subTitleText: "Descripción breve 2",
-      badges: ["Badge 3", "Badge 4"],
-      age: "Edad 2",
+      label: "Gurú",
+      subTitle: "Isaac",
+      subTitleText: "Hola, soy Isaac, un empresario y gurú en negocios con experiencia de vida. ¡Conversemos sobre cómo alcanzar el éxito en los negocios!",
+      badges: ["guru", "empresario", "negocios"],
+      age: "38",
       username: "fiestasnack",
+      image: image2
     },
     {
-      label: "Nombre del Creador 3",
-      subTitle: "Minor",
-      subTitleText: "Descripción breve 3",
-      badges: ["Badge 5", "Badge 6"],
-      age: "Edad 3",
+      label: "Joven",
+      subTitle: "Melisa",
+      subTitleText: "¡Hola! Soy Melisa, una joven con habilidades de escucha activa. Me encanta conversar y salir. ¡Hablemos sobre cualquier tema que te interese!",
+      badges: ["escucha activa", "conversar", "salir"],
+      age: "23",
       username: "patient0",
+      image: image3
+    },
+    {
+      label: "Couch",
+      subTitle: "Michael",
+      subTitleText: "¡Hola! Soy Michael, un couch experto en negocios online y motivación personal. ¡Vamos a descubrir juntos cómo alcanzar tus metas!",
+      badges: ["couch", "negocios online", "motivacion"],
+      age: "43",
+      username: "patient0",
+      image: image4
+    },
+    {
+      label: "Empresaria",
+      subTitle: "Meilyn",
+      subTitleText: " ¡Hola! Soy Meilyn, una empresaria apasionada por el dinero, salir y conversar. ¡Únete a mí para aprender y compartir experiencias empresariales!",
+      badges: ["dinero", "salir", "conversar"],
+      age: "27",
+      username: "patient0",
+      image: image5
     },
   ];
 
@@ -110,7 +136,7 @@ const NotificationsOrganism = ({ creators }) => {
       <div className="creators--container">
         {creatorsToRender.map((creator, index) => (
           <Creator
-            imageUri={image}
+            imageUri={creator.image}
             key={index}
             label={creator.label}
             subTitle={creator.subTitle}

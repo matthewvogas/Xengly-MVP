@@ -2,7 +2,7 @@
 
 import Label from "../../atoms/labels/label";
 import Badge from "../../atoms/badge/badge";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./creatorCard.css";
 import React from "react";
 
@@ -10,7 +10,7 @@ const CreatorCard = ({
   imageUri,
   label,
   subTitle,
-  subTitleTex,
+  subTitleText,
   badges,
   age,
   username,
@@ -20,7 +20,7 @@ const CreatorCard = ({
   const badgesToRender = badges || badgesExample;
 
   return (
-    <Link to={'/xengler/' + username || '/'} className={`creatorCard`}>
+    <Link to={"/xengler/" + username || "/"} className={`creatorCard`}>
       <img className="image" src={imageUri} alt="" />
       <div className="contentCreator">
         <div>
@@ -32,7 +32,7 @@ const CreatorCard = ({
         <Label
           className="SubTitleText"
           text={
-            subTitleTex ||
+            subTitleText ||
             "Hola, soy ing en sistemas desde antes de graduarme de la secundaria, fundé una startup a mis 16 y ahora estoy construyendo Xengly."
           }
         />
