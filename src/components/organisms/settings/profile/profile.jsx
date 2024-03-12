@@ -1,3 +1,4 @@
+import { GoogleMap, LoadScript, Marker, Circle } from '@react-google-maps/api';
 import AppPicker from "../../../../components/molecules/appPicker/appPicker";
 import SetSchedule from "../../../molecules/setSchedule/setSchedule";
 import TextArea from "../../../atoms/textArea/textArea";
@@ -16,6 +17,17 @@ import { updateProfile as updateFirebaseProfile } from "firebase/auth";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 
 const ProfileOrganism = () => {
+
+  // maps
+  const apiKeyMaps = process.env.API_KEY_MAPS;
+
+  const [center, setCenter] = useState({ lat: 37.774929, lng: -122.419416 });
+  const [radius, setRadius] = useState(4); 
+
+  const handleMapClick = (e) => {
+    setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+  };
+
   const { profile, updateProfile } = useUserStore();
   const [name, setName] = useState(profile?.name || "");
   const [email, setEmail] = useState(profile?.email || "");
@@ -223,13 +235,33 @@ const ProfileOrganism = () => {
         </div>
       </div>
 
-      <div className="profile--location profile">
+      <div className="profile--location ">
         <div className="location">
           <Label text="Location Meets" className="SubTitleText" />
           <Toggle onToggle={handleToggleMap} isToggled={isMap} />
         </div>
+
         <div className={`maps ${isMap ? "show" : "hide"}`}>
-          <p>map</p>
+          <Input
+            className="input--container"
+            type="number"
+            placeholder="4 KM"
+            value={radius}
+            onChange={(e) => setRadius(parseInt(e.target.value))}
+          />
+          <div className='g-map'>
+          <LoadScript googleMapsApiKey={apiKeyMaps}>
+            <GoogleMap
+              mapContainerStyle={{ height: "400px", width: "100%" }}
+              zoom={10}
+              center={center}
+              onClick={handleMapClick}
+            >
+              <Marker position={center} />
+              <Circle center={center} radius={radius * 1000} />
+            </GoogleMap>
+          </LoadScript>
+          </div>
         </div>
       </div>
 

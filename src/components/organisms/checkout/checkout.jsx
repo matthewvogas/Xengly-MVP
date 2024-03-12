@@ -2,6 +2,7 @@ import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPic
 import AppPicker from "../../../components/molecules/appPicker/appPicker";
 import TimePicker from "../../../components/atoms/timePicker/timePicker";
 import ImageExample from "../../../assets/images/imageProfile.jpg";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import Image from "../../atoms/imageProfile/image";
 import Toggle from "../../atoms/toggle/toggle";
 import Button from "../../atoms/button/button";
@@ -13,6 +14,11 @@ import React from "react";
 import "./checkout.css";
 
 const CheckoutOrganism = ({ username }) => {
+
+  
+  const apiKeyMaps = process.env.API_KEY_MAPS;
+
+  console.log(apiKeyMaps)
   const { isMap, selectedApp, setIsMap, setSelectedApp } = useCheckoutStore();
 
   const handleToggleMap = () => {
@@ -25,6 +31,11 @@ const CheckoutOrganism = ({ username }) => {
     } else {
       setSelectedApp(appName);
     }
+  };
+
+  const mapStyles = {
+    height: "400px",
+    width: "100%",
   };
 
   return (
@@ -54,6 +65,18 @@ const CheckoutOrganism = ({ username }) => {
           <div className="date">
             <CalendarPicker />
             <TimePicker />
+          </div>
+          <div className="g-map">
+
+            <LoadScript googleMapsApiKey={apiKeyMaps}>
+              <GoogleMap
+                mapContainerStyle={mapStyles}
+                zoom={10}
+                center={{ lat: 37.774929, lng: -122.419416 }}
+              >
+                {/* Marcadores, polígonos u otras capas pueden agregarse aquí */}
+              </GoogleMap>
+            </LoadScript>
           </div>
         </div>
 

@@ -135,3 +135,9 @@
 .maps--checkout--options .SubTitleText {
     margin-bottom: 12px;
 }
+
+.g-map {
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+}
