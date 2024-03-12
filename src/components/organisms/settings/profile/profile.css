@@ -47,7 +47,6 @@
 }
 
 .profile--location .location {
-    display: flex;
     gap: 12px;
     width: 100%;
 }
@@ -125,5 +124,5 @@
 
 .maps.show {
     opacity: 1;
-    max-height: 324px;
+    max-height: 824px;
 }
