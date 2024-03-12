@@ -8,6 +8,7 @@ import Input from "../../atoms/input/input";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
+import { Link } from "react-router-dom";
 
 const saveUserData = async (user, additionalData = {}) => {
   const userRef = doc(db, "users", user.uid);
@@ -104,6 +105,7 @@ const SignupOrganism = () => {
           />
         </div>
       </div>
+      <Link to={'/login'}> ¿Tienes cuenta? </Link>
     </section>
   );
 };

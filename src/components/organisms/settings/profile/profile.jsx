@@ -7,6 +7,7 @@ import Button from "../../../atoms/button/button";
 import Toggle from "../../../atoms/toggle/toggle";
 import Label from "../../../atoms/labels/label";
 import Input from "../../../atoms/input/input";
+import AddImages from "../../../atoms/addImages/addImages";
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import useProfileStore from "./store";
@@ -297,11 +298,13 @@ const ProfileOrganism = () => {
         </div>
       </div>
 
-      <div className="profile--images profile">
+      <div className="profile--images">
         <div className="images">
           <Label text="Images" className="SubTitleText" />
         </div>
-        <div className="image--folder">{/* images  */}</div>
+        <div className="image--folder">
+          <AddImages maxImages={10}/>
+        </div>
       </div>
     </section>
   );

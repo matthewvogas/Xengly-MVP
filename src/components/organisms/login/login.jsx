@@ -9,6 +9,7 @@ import { auth, googleProvider } from "../../../firebase.config";
 import useUserStore from "../../store/userStore";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase.config";
+import { Link } from "react-router-dom";
 
 import "./login.css";
 
@@ -113,6 +114,7 @@ const LoginOrganism = () => {
           />
         </div>
       </div>
+      <Link to={'/signup'}> ¿No tienes cuenta? </Link>
     </section>
   );
 };

@@ -21,7 +21,7 @@ const AddImages = ({ images, setImages, maxImages, text }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setDragging(false);
-    if (images.length >= maxImages) {
+    if (images?.length >= maxImages) {
       alert(`Máximo de ${maxImages} imágenes permitidas`);
       return;
     }
@@ -49,7 +49,7 @@ const AddImages = ({ images, setImages, maxImages, text }) => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      {images.length > 0 ? (
+      {images?.length > 0 ? (
         <div className="images-preview">
           {images.map((image, index) => (
             <div key={index} className="image-container">

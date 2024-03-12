@@ -57,6 +57,13 @@
     width: 100%;
 }
 
+.profile--images {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
 .profile--images .images {
     display: flex;
     gap: 12px;
