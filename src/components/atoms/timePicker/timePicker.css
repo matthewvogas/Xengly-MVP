@@ -27,12 +27,14 @@
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s, max-height 0.3s;
   border-radius: 5px; 
+  margin-top: 6px;
 }
 
 .time-picker-list.show {
   opacity: 1;
   visibility: visible;
   max-height: 200px;
+  margin-top: 6px;
 }
 
 .time-picker-item {

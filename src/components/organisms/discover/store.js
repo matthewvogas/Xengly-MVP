@@ -2,10 +2,11 @@ import create from 'zustand';
 
 const useBadgeStore = create((set) => ({
   badges: [
-    { text: "Bailarinas", isActive: false },
-    { text: "Influencers", isActive: false },
-    { text: "Deportistas", isActive: false },
-    { text: "Músicos", isActive: false },
+    { text: "empresario", isActive: false },
+    { text: "guru", isActive: false },
+    { text: "1M", isActive: false },
+    { text: "negocios", isActive: false },
+    { text: "salir", isActive: false },
   ],
   searchQuery: "",
   setSearchQuery: (query) =>
