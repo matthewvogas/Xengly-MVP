@@ -67,7 +67,7 @@ const App = () => {
           email: "",
           imageUrl: "",
         });
-        if (location.pathname !== "/") {
+        if (location.pathname !== "/" && location.pathname !== "/signup") {
           navigate("/login");
         }
       }

@@ -23,12 +23,15 @@ const ProfileOrganism = () => {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const userDocRef = doc(db, "users", auth.currentUser.uid);
-      const userDocSnap = await getDoc(userDocRef);
+      if (auth.currentUser) {
+        const userDocRef = doc(db, "users", auth.currentUser.uid);
+        const userDocSnap = await getDoc(userDocRef);
 
-      if (userDocSnap.exists()) {
-        const userData = userDocSnap.data();
-        updateProfile({ ...profile, biography: userData.biography });
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          console.log("Biography updated:", userData.biography);
+          updateProfile({ ...profile, biography: userData.biography });
+        }
       }
     };
 
