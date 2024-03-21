@@ -2,7 +2,12 @@ import React from "react";
 import "./timePicker.css";
 import { useState } from "react";
 
-const TimePicker = ({ className, excludedTimes = [], selectedTime, setSelectedTime }) => {
+const TimePicker = ({
+  className,
+  excludedTimes = [],
+  selectedTime,
+  setSelectedTime,
+}) => {
   const [showList, setShowList] = useState(false);
 
   const isTimeExcluded = (time, excludedTimes) => {
@@ -21,7 +26,9 @@ const TimePicker = ({ className, excludedTimes = [], selectedTime, setSelectedTi
     const times = [];
     for (let hour = 0; hour < 24; hour++) {
       for (let minute = 0; minute < 60; minute += 30) {
-        const time = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+        const time = `${hour.toString().padStart(2, "0")}:${minute
+          .toString()
+          .padStart(2, "0")}`;
         if (!isTimeExcluded(time, excludedTimes)) {
           times.push(time);
         }
@@ -34,7 +41,10 @@ const TimePicker = ({ className, excludedTimes = [], selectedTime, setSelectedTi
 
   return (
     <div className={`time-picker ${className}`}>
-      <button className="time-picker-button" onClick={() => setShowList(!showList)}>
+      <button
+        className="time-picker-button"
+        onClick={() => setShowList(!showList)}
+      >
         {selectedTime || "Select Time"}
       </button>
       <div className={`time-picker-list ${showList ? "show" : ""}`}>

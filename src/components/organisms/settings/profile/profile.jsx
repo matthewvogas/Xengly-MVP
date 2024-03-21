@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, Marker, Circle } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, Circle } from "@react-google-maps/api";
 import AppPicker from "../../../../components/molecules/appPicker/appPicker";
 import SetSchedule from "../../../molecules/setSchedule/setSchedule";
 import TextArea from "../../../atoms/textArea/textArea";
@@ -16,18 +16,13 @@ import useProfileStore from "./store";
 import { auth, db } from "../../../../firebase.config";
 import { updateProfile as updateFirebaseProfile } from "firebase/auth";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const ProfileOrganism = () => {
-
-  // maps
   const apiKeyMaps = process.env.API_KEY_MAPS;
-
   const [center, setCenter] = useState({ lat: 37.774929, lng: -122.419416 });
-  const [radius, setRadius] = useState(4); 
-
-  const handleMapClick = (e) => {
-    setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-  };
+  const [radius, setRadius] = useState(4);
+  const [images, setImages] = useState([]);
 
   const { profile, updateProfile } = useUserStore();
   const [name, setName] = useState(profile?.name || "");
@@ -42,36 +37,73 @@ const ProfileOrganism = () => {
 
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();
-          console.log("Biography updated:", userData.biography);
           updateProfile({ ...profile, biography: userData.biography });
+
+          if (userData.images && userData.images.length > 0) {
+            const fetchedImages = userData.images.map((url) => ({
+              url,
+              file: null,
+            }));
+            setImages(fetchedImages);
+          }
         }
       }
     };
 
     fetchUserProfile();
-  }, []);
+  }, [auth.currentUser, db, profile, updateProfile]);
 
-  useEffect(() => {
-    setName(profile?.name || "");
-    setEmail(profile?.email || "");
-    setBiography(profile?.biography || "");
-  }, [profile]);
+  const handleMapClick = (e) => {
+    setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+  };
 
   const handleSave = async () => {
     try {
-      await updateFirebaseProfile(auth.currentUser, {
-        displayName: name,
-      });
+      if (!auth.currentUser) return;
+
+      await updateFirebaseProfile(auth.currentUser, { displayName: name });
 
       const userDocRef = doc(db, "users", auth.currentUser.uid);
+      const storage = getStorage();
+
+      const imageUploadPromises = images
+        .filter((image) => image.file)
+        .map((image, index) =>
+          uploadBytes(
+            ref(
+              storage,
+              `users/${
+                auth.currentUser.uid
+              }/images/image_${Date.now()}_${index}`
+            ),
+            image.file
+          )
+        );
+
+      const imageSnapshots = await Promise.all(imageUploadPromises);
+      const imageUrlPromises = imageSnapshots.map((snapshot) =>
+        getDownloadURL(snapshot.ref)
+      );
+      const newImageUrls = await Promise.all(imageUrlPromises);
+      const allImageUrls = [
+        ...images.filter((image) => !image.file).map((image) => image.url),
+        ...newImageUrls,
+      ];
+
       await updateDoc(userDocRef, {
         name,
         email,
         biography,
+        images: allImageUrls,
       });
 
-      updateProfile({ name, email, biography });
-
+      updateProfile({
+        ...profile,
+        name,
+        email,
+        biography,
+        images: allImageUrls,
+      });
       alert("Perfil actualizado con éxito");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
@@ -136,6 +168,13 @@ const ProfileOrganism = () => {
 
   const handleToggleMap = () => {
     setIsMap(!isMap);
+  };
+  const handleRemoveImage = (index) => {
+    console.log("Before removing:", images);
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    setImages(newImages);
+    console.log("After removing:", newImages);
   };
 
   return (
@@ -253,18 +292,18 @@ const ProfileOrganism = () => {
             value={radius}
             onChange={(e) => setRadius(parseInt(e.target.value))}
           />
-          <div className='g-map'>
-          <LoadScript googleMapsApiKey={apiKeyMaps}>
-            <GoogleMap
-              mapContainerStyle={{ height: "400px", width: "100%" }}
-              zoom={10}
-              center={center}
-              onClick={handleMapClick}
-            >
-              <Marker position={center} />
-              <Circle center={center} radius={radius * 1000} />
-            </GoogleMap>
-          </LoadScript>
+          <div className="g-map">
+            <LoadScript googleMapsApiKey={apiKeyMaps}>
+              <GoogleMap
+                mapContainerStyle={{ height: "400px", width: "100%" }}
+                zoom={10}
+                center={center}
+                onClick={handleMapClick}
+              >
+                <Marker position={center} />
+                <Circle center={center} radius={radius * 1000} />
+              </GoogleMap>
+            </LoadScript>
           </div>
         </div>
       </div>
@@ -303,7 +342,12 @@ const ProfileOrganism = () => {
           <Label text="Images" className="SubTitleText" />
         </div>
         <div className="image--folder">
-          <AddImages maxImages={10}/>
+          <AddImages
+            images={images}
+            setImages={setImages}
+            maxImages={3}
+            onRemoveImage={handleRemoveImage}
+          />
         </div>
       </div>
     </section>

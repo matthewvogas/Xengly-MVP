@@ -1,27 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Label from "../../atoms/labels/label";
 import Input from "../../atoms/input/input";
 import Notification from "../../molecules/notifications/notification";
-import Image from "../../../assets/images/exampleImage.jpg";
 import { ReactComponent as SearchIcon } from "../../../assets/icons/Search.svg";
 import "./notifications.css";
-import useNotificationsStore from "./store";
-import { useEffect } from "react";
+import { getAuth } from "firebase/auth";
 
-const NotificationsOrganism = ({ notifications = [] }) => {
-  const {
-    searchText,
-    setSearchText,
-    filterNotifications,
-    removeNotification,
-    filteredNotifications,
-  } = useNotificationsStore();
-  const notificationsToRender =
-    filteredNotifications.length > 0 ? filteredNotifications : notifications;
-
-  useEffect(() => {
-    filterNotifications(searchText);
-  }, [searchText, filterNotifications]);
+const NotificationsOrganism = () => {
+  const [searchText, setSearchText] = useState("");
+  const auth = getAuth();
+  const userId = auth.currentUser ? auth.currentUser.uid : null;
 
   return (
     <section>
@@ -46,15 +34,7 @@ const NotificationsOrganism = ({ notifications = [] }) => {
       </div>
 
       <div className="notifications--container">
-        {notificationsToRender.map((notification, index) => (
-          <Notification
-            key={index}
-            title={notification.title}
-            message={notification.message}
-            icon={notification.icon}
-            onDelete={() => removeNotification(notification.id)}
-          />
-        ))}
+        <Notification />
       </div>
     </section>
   );

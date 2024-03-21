@@ -1,7 +1,7 @@
-import NotificationsOrganism from '../components/organisms/notifications/notifications'
+import NotificationsOrganism from "../components/organisms/notifications/notifications";
 
 const Notifications = () => {
-  return <NotificationsOrganism/>;
+  return <NotificationsOrganism />;
 };
 
 export default Notifications;

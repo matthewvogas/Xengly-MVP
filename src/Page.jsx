@@ -28,9 +28,9 @@ const routes = [
   { path: "/settings", Component: Settings, name: "Settings", icon: settings },
   { path: "/signup", Component: Signup, name: "Signup" },
   { path: "/login", Component: Login, name: "Login" },
-  { path: "/xengler/:username", Component: Xengler, name: "Xengler" },
+  { path: "/xengler/:id", Component: Xengler, name: "Xengler" },
   {
-    path: "/xengler/:username/checkout",
+    path: "/xengler/:id/checkout",
     Component: Checkout,
     name: "Checkout",
   },
