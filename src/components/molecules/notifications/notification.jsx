@@ -3,7 +3,14 @@ import "./notification.css";
 import Image from "../../../assets/images/exampleImage.jpg";
 import ex from "../../../assets/icons/X.svg";
 
-const Notification = ({ icon, message, title, onDelete }) => {
+const Notification = ({
+  icon,
+  message,
+  title,
+  onDelete,
+  onAccept,
+  onCancel,
+}) => {
   const renderedImage = icon || Image;
 
   return (
@@ -23,12 +30,6 @@ const Notification = ({ icon, message, title, onDelete }) => {
           </span>
         </div>
       </div>
-      <img
-        src={ex}
-        alt="Notification Icon"
-        className="trash"
-        onClick={onDelete}
-      />
     </div>
   );
 };

@@ -61,10 +61,10 @@ const Menu = ({ routes, profileUri }) => {
         <div className="profile">
           <Image
             className="ImageProfileMenu"
-            profileImage={renderedProfileImage}
+            profileImage={profile.imageUrl || renderedProfileImage}
           />
           <div className="profile-info">
-            <p>{isAuthenticated ? profile.name : "not user found"}</p>
+            <p>{isAuthenticated ? profile.name : "Not logued in yet"}</p>
             <span>
               <a href="" onClick={handleAuthAction}>
                 {isAuthenticated ? "Log Out" : "Login"}
