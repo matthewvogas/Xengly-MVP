@@ -20,7 +20,7 @@ const CheckoutOrganism = () => {
   const [creatorDetails, setCreatorDetails] = useState(null);
   const navigate = useNavigate();
   const { isMap, selectedApp, setIsMap, setSelectedApp } = useCheckoutStore();
-  const apiKeyMaps = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const apiKeyMaps = process.env.API_KEY_MAPS;
   const auth = getAuth();
   const clientId = auth.currentUser ? auth.currentUser.uid : null;
   const [selectedDate, setSelectedDate] = useState(null);
