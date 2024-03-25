@@ -1,10 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./calendarPicker.css";
 
-const CalendarPicker = ({ className }) => {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const dateInputRef = useRef(null);
-
+const CalendarPicker = ({ className, selectedDate, setSelectedDate }) => {
   const handleChange = (event) => {
     setSelectedDate(event.target.value);
   };
@@ -12,9 +9,9 @@ const CalendarPicker = ({ className }) => {
   return (
     <input
       type="date"
-      className="date-picker-input"
+      className={`date-picker-input ${className || ""}`}
+      value={selectedDate || ""}
       onChange={handleChange}
-      ref={dateInputRef}
     />
   );
 };

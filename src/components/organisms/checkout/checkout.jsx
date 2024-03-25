@@ -30,6 +30,7 @@ const CheckoutOrganism = () => {
     const fetchCreatorDetails = async () => {
       const details = await getCreatorById(id);
       setCreatorDetails(details);
+      console.log(`date?:= ${selectedDate}`);
     };
 
     fetchCreatorDetails();
@@ -57,6 +58,8 @@ const CheckoutOrganism = () => {
       platform: selectedApp,
       status: "pending",
     };
+
+    console.log("Meeting details to be sent:", meetingDetails);
 
     await scheduleMeeting(meetingDetails);
 
@@ -94,8 +97,14 @@ const CheckoutOrganism = () => {
         className={`location--date maps--checkout ${isMap ? "hide" : "show"}`}
       >
         <div className="date">
-          <CalendarPicker onChange={(date) => setSelectedDate(date)} />
-          <TimePicker onChange={(time) => setSelectedTime(time)} />
+          <CalendarPicker
+            setSelectedDate={setSelectedDate}
+            selectedDate={selectedDate}
+          />
+          <TimePicker
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+          />
         </div>
         <div className="g-map">
           <LoadScript googleMapsApiKey={apiKeyMaps}>
