@@ -23,35 +23,39 @@ const ProfileOrganism = () => {
   const [center, setCenter] = useState({ lat: 37.774929, lng: -122.419416 });
   const [radius, setRadius] = useState(4);
   const [images, setImages] = useState([]);
-
+  const [schedules, setSchedules] = useState([]);
   const { profile, updateProfile } = useUserStore();
   const [name, setName] = useState(profile?.name || "");
   const [email, setEmail] = useState(profile?.email || "");
   const [biography, setBiography] = useState(profile?.biography || "");
+  const {
+    selectedApps,
+    isOnline,
+    isMap,
+    setSelectedApps,
+    setIsOnline,
+    setIsMap,
+  } = useProfileStore();
+
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      if (auth.currentUser) {
+      if (auth.currentUser && isFetching) {
         const userDocRef = doc(db, "users", auth.currentUser.uid);
         const userDocSnap = await getDoc(userDocRef);
 
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();
           updateProfile({ ...profile, biography: userData.biography });
-
-          if (userData.images && userData.images.length > 0) {
-            const fetchedImages = userData.images.map((url) => ({
-              url,
-              file: null,
-            }));
-            setImages(fetchedImages);
-          }
+          setSchedules(userData.schedules || []);
         }
+        setIsFetching(false);
       }
     };
 
     fetchUserProfile();
-  }, [auth.currentUser, db, profile, updateProfile]);
+  }, [auth.currentUser, isFetching]);
 
   const handleMapClick = (e) => {
     setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
@@ -85,42 +89,32 @@ const ProfileOrganism = () => {
         getDownloadURL(snapshot.ref)
       );
       const newImageUrls = await Promise.all(imageUrlPromises);
+
       const allImageUrls = [
         ...images.filter((image) => !image.file).map((image) => image.url),
         ...newImageUrls,
       ];
 
-      await updateDoc(userDocRef, {
+      const updateData = {
         name,
         email,
         biography,
         images: allImageUrls,
-      });
+        schedules,
+      };
 
+      await updateDoc(userDocRef, updateData);
       updateProfile({
         ...profile,
-        name,
-        email,
-        biography,
-        images: allImageUrls,
+        ...updateData,
       });
+
       alert("Perfil actualizado con éxito");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       alert("Error al actualizar el perfil");
     }
   };
-
-  const {
-    schedules,
-    selectedApps,
-    isOnline,
-    isMap,
-    setSchedules,
-    setSelectedApps,
-    setIsOnline,
-    setIsMap,
-  } = useProfileStore();
 
   const handleAppPickerToggle = (appName) => {
     if (selectedApps.includes(appName)) {
@@ -155,7 +149,8 @@ const ProfileOrganism = () => {
     }
 
     const newSchedule = { day, startTime, endTime };
-    setSchedules([...schedules, newSchedule]);
+    setSchedules((prevSchedules) => [...prevSchedules, newSchedule]);
+    console.log("Schedules after adding:", schedules);
   };
 
   const removeSchedule = (indexToRemove) => {
