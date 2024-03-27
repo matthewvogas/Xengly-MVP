@@ -31,9 +31,9 @@ export const getCreators = async () => {
   return creators;
 };
 
-export const getCreatorById = async (creatorId) => {
-  const creatorRef = doc(db, "users", creatorId);
-  const docSnap = await getDoc(creatorRef);
+export const getUserById = async (userId) => {
+  const userRef = doc(db, "users", userId);
+  const docSnap = await getDoc(userRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();

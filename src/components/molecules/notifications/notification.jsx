@@ -2,6 +2,7 @@ import React from "react";
 import "./notification.css";
 import Image from "../../../assets/images/exampleImage.jpg";
 import ex from "../../../assets/icons/X.svg";
+import Button from "../../atoms/button/button"; // Asegúrate de importar el componente Button
 
 const Notification = ({
   icon,
@@ -29,6 +30,14 @@ const Notification = ({
             {message || "Lorem Impsun dolor amet vertical position"}
           </span>
         </div>
+      </div>
+      <div className="notification-actions">
+        <Button text="Aceptar" className="button--primary" onClick={onAccept} />
+        <Button
+          text="Cancelar"
+          className="button--secondary"
+          onClick={onCancel}
+        />
       </div>
     </div>
   );

@@ -150,7 +150,6 @@ const ProfileOrganism = () => {
 
     const newSchedule = { day, startTime, endTime };
     setSchedules((prevSchedules) => [...prevSchedules, newSchedule]);
-    console.log("Schedules after adding:", schedules);
   };
 
   const removeSchedule = (indexToRemove) => {
@@ -165,11 +164,9 @@ const ProfileOrganism = () => {
     setIsMap(!isMap);
   };
   const handleRemoveImage = (index) => {
-    console.log("Before removing:", images);
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
-    console.log("After removing:", newImages);
   };
 
   return (
