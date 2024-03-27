@@ -36,7 +36,6 @@ const TimePicker = ({
     }
     return times;
   };
-
   const timeList = generateTimeList();
 
   return (

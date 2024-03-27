@@ -15,6 +15,8 @@ const Menu = ({ routes, profileUri }) => {
   const navigate = useNavigate();
   const setActivePath = useMenuStore((state) => state.setActivePath);
 
+  const formUrl = "https://forms.gle/7DXSD7LUdnFJPhAZ7";
+
   React.useEffect(() => {
     setActivePath(location.pathname);
   }, [location.pathname, setActivePath]);
@@ -53,7 +55,9 @@ const Menu = ({ routes, profileUri }) => {
         <div className="cta-creator">
           <span>Se un Creador</span>
           <p>Forma parte de los creadores que se lucran de su tiempo ahora</p>
-          <button>Ser creador</button>
+          <a href={formUrl}>
+            <button>Ser creador</button>
+          </a>
         </div>
 
         <div className="divider"> </div>

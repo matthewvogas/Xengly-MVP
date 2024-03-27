@@ -1,29 +1,28 @@
 import React, { useState } from "react";
 import "./setSchedule.css";
-import Image from "../../../assets/images/exampleImage.jpg";
 import TimePicker from "../../atoms/timePicker/timePicker";
 import Button from "../../atoms/button/button";
 
-const SetSchedule = ({ icon, addSchedule }) => {
+const SetSchedule = ({ addSchedule }) => {
   const [selectedDay, setSelectedDay] = useState("Monday");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [schedules, setSchedules] = useState([]);
 
   const handleAddSchedule = () => {
     if (!startTime || !endTime) {
-      alert('Please select both start and end times.');
+      alert("Please select both start and end times.");
       return;
     }
-  
+
     if (startTime >= endTime) {
-      alert('Start time must be earlier than end time.');
+      alert("Start time must be earlier than end time.");
       return;
     }
-  
+
     addSchedule(selectedDay, startTime, endTime);
-  };  
-  
+    setStartTime("");
+    setEndTime("");
+  };
 
   return (
     <div className="setSchedule-container">
@@ -49,7 +48,7 @@ const SetSchedule = ({ icon, addSchedule }) => {
         <Button
           onClick={handleAddSchedule}
           className="button--primary"
-          text="añadir"
+          text="Añadir"
         />
       </div>
     </div>

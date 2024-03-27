@@ -4,9 +4,8 @@ import Image from "../../atoms/imageProfile/image";
 import Label from "../../atoms/labels/label";
 import Button from "../../atoms/button/button";
 import Images from "../../atoms/Images/images";
-import { getCreatorById } from "../../../services/creatorService";
+import { getUserById } from "../../../services/creatorService";
 import ImageExample from "../../../assets/images/imageProfile.jpg";
-import ImageExampleForBio from "../../../assets/images/creatorsDummy/img1.webp";
 import "./creator.css";
 
 const CreatorOrganism = () => {
@@ -16,7 +15,7 @@ const CreatorOrganism = () => {
 
   useEffect(() => {
     const fetchCreatorDetails = async () => {
-      const details = await getCreatorById(id);
+      const details = await getUserById(id);
       setCreatorDetails(details);
     };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getCreatorById } from "../../../services/creatorService";
+import { getUserById } from "../../../services/creatorService";
 import CalendarPicker from "../../../components/atoms/calendarPicker/calendarPicker";
 import AppPicker from "../../../components/molecules/appPicker/appPicker";
 import TimePicker from "../../../components/atoms/timePicker/timePicker";
@@ -28,7 +28,7 @@ const CheckoutOrganism = () => {
 
   useEffect(() => {
     const fetchCreatorDetails = async () => {
-      const details = await getCreatorById(id);
+      const details = await getUserById(id);
       setCreatorDetails(details);
     };
 
@@ -94,8 +94,14 @@ const CheckoutOrganism = () => {
         className={`location--date maps--checkout ${isMap ? "hide" : "show"}`}
       >
         <div className="date">
-          <CalendarPicker onChange={(date) => setSelectedDate(date)} />
-          <TimePicker onChange={(time) => setSelectedTime(time)} />
+          <CalendarPicker
+            setSelectedDate={setSelectedDate}
+            selectedDate={selectedDate}
+          />
+          <TimePicker
+            selectedTime={selectedTime}
+            setSelectedTime={setSelectedTime}
+          />
         </div>
         <div className="g-map">
           <LoadScript googleMapsApiKey={apiKeyMaps}>
